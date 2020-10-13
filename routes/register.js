@@ -6,47 +6,29 @@ const moment = require('moment');
 const bcrypt = require('bcrypt');
 const createToken = require('../utils/token');
 const validateUserRegister = require('../schema/users').validateUserRegister;
-const verifUniqueEmail = require('../utils/users');
+const verifyUniqueEmail = require('../utils/users').verifyUniqueEmail;
 
 
 const router = new Router();
 
-router.post('/', async (req,res) => {
+router.post('/', [validateUserRegister,verifyUniqueEmail], async (req,res) => {
 
-    const body = req.body;
+    const user = req.user;
     const date = moment().format('YYYY-MM-D H:mm:ss');
-
-    // verify with Joi
-    const verify = await validateUserRegister(body);
-        if(verify.error){
-            res.status(400).send(verify.error.details[0].message);
-            return ;
-        }
-
-    const verifMail = await verifUniqueEmail(body);
     
-    if(verifMail) {
-
-
      await bcrypt.genSalt(10)
         .then(salt => {
-            bcrypt.hash(body.password, salt)
+            bcrypt.hash(user.password, salt)
             .then(hashedPwd => {
                 db.query(`INSERT INTO users(firstname, lastname, email, password, picture, created_at, updated_at, is_admin)
-                VALUES ('${body.firstname}','${body.lastname}','${body.email}','${hashedPwd}','${body.picture}','${date}','${date}','${body.is_admin}')`);
+                VALUES ('${user.firstname}','${user.lastname}','${user.email}','${hashedPwd}','${user.picture}','${date}','${date}','${user.is_admin}')`);
             });
-        });
-        
+        });     
 
-        const token = await (createToken(body));
+        const token = await createToken(user);
 
         res.header('auth-token', token).send(token);
 
-        }
-        else {
-            res.status(400).send('Email already used.');
-        };
-    
 });
 
 module.exports = router;

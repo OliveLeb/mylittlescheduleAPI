@@ -2,7 +2,9 @@
 
 const Joi = require('joi');
 
-const validateUserRegister = (body) => {
+const validateUserRegister = async (req,res,next) => {
+
+    const body = req.body;
 
     const schema = Joi.object({
     firstname : Joi.string().min(2).max(50).required(),
@@ -13,16 +15,36 @@ const validateUserRegister = (body) => {
     picture: Joi.string().allow(null),
     is_admin: Joi.boolean().required()
 });
-    return schema.validateAsync(body);
+    
+    try {
+        const verifJoi = await schema.validateAsync(body);
+        req.user = verifJoi;
+        return next();
+    }
+    catch(error) {
+        return res.status(400).send(error.details[0].message);
+    }
 };
 
 
-const validateUserLogin = (body) => {
+const validateUserLogin = async (req,res,next) => {
+
+    const body = req.body;
+
     const schema = Joi.object({
         email: Joi.string().email({tlds:{allow:true}}).required(),
         password: Joi.string().pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,16}$')).required(),
-    })
-    return schema.validateAsync(body);
+    });
+    
+    try {
+        const verifJoi = await schema.validateAsync(body);
+        req.user = verifJoi;
+        return next();
+    }
+    catch(error) {
+        return res.status(400).send(error.details[0].message);
+    }
+
 };
 
 
