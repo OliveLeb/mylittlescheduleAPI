@@ -1,3 +1,5 @@
+'use strict';
+
 const routerUser = require('./usersRoute');
 const register = require('./register');
 
