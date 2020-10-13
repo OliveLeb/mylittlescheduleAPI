@@ -5,7 +5,7 @@ const db = require('../db');
 const moment = require('moment');
 const bcrypt = require('bcrypt');
 const createToken = require('../utils/token');
-const {validateUser} = require('../schema/users');
+const validateUserRegister = require('../schema/users').validateUserRegister;
 const verifUniqueEmail = require('../utils/users');
 
 
@@ -16,13 +16,14 @@ router.post('/', async (req,res) => {
     const body = req.body;
     const date = moment().format('YYYY-MM-D H:mm:ss');
 
-    const verifMail = await verifUniqueEmail(body);
-
-    const verify = await validateUser(body);
+    // verify with Joi
+    const verify = await validateUserRegister(body);
         if(verify.error){
             res.status(400).send(verify.error.details[0].message);
             return ;
         }
+
+    const verifMail = await verifUniqueEmail(body);
     
     if(verifMail) {
 
@@ -38,7 +39,7 @@ router.post('/', async (req,res) => {
         
 
         const token = await (createToken(body));
-        
+
         res.header('auth-token', token).send(token);
 
         }
