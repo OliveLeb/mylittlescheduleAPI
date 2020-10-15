@@ -26,6 +26,8 @@ const verifyCredentials = async (req,res,next) => {
     const validPassword = await bcrypt.compare(user.password,rows[0].password);
     if(!validPassword) return res.status(400).send('Invalid password.');
 
+    req.user = rows[0];
+    
     return next();
 }
 
