@@ -1,6 +1,7 @@
 'use strict';
 
-const Router = require('express-promise-router');
+//const Router = require('express-promise-router');
+const express = require('express');
 const db = require('../db');
 const moment = require('moment');
 const bcrypt = require('bcrypt');
@@ -8,8 +9,8 @@ const createToken = require('../utils/token');
 const validateUserRegister = require('../schema/users').validateUserRegister;
 const verifyUniqueEmail = require('../utils/users').verifyUniqueEmail;
 
-
-const router = new Router();
+const router = express.Router();
+//const router = new Router();
 
 router.post('/', [validateUserRegister,verifyUniqueEmail], async (req,res) => {
 

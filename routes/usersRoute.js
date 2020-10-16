@@ -1,11 +1,13 @@
 'use strict';
 
-const Router = require('express-promise-router');
+//const Router = require('express-promise-router');
+const express = require('express');
 const moment = require('moment');
 const db = require('../db');
 const verifyToken = require('../middleware/authorization');
 
-const routerUser = new Router();
+const routerUser = express.Router();
+//const routerUser = new Router();
 
 routerUser.get('/', verifyToken,async (req,res)=> {
     const {rows} = await db.query('SELECT * FROM users ORDER BY id ASC');
