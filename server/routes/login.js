@@ -16,7 +16,10 @@ router.post('/',[validateUserLogin,verifyCredentials], async (req,res) => {
     
     const token = await createToken(user);
 
-    res.header('auth-token', token).send(token);
+    res.status(200).header('auth-token', token).send({
+        message: 'Token created, logged in',
+        token: token
+    });
     
 
 });
