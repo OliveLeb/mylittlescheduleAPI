@@ -1,29 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import tasksService from '../services/userTasks';
+import React from 'react';
 
-const TasksList = () => {
-
-    const [tasks,setTasks] = useState([]);
-
-    //const Tasks = () => {
-
-        useEffect(()=>{
-           tasksService.getTasks().then(res=>{
-               setTasks(...tasks,res.data.map(task=>task));
-           })
-           .catch(error=>{
-               console.log(error);
-           });
-        },[]);
-  //  };
+const TasksList = ({tasks}) => {
 
     return (
         <div>
+            lol
             <ul>
                 {tasks.map(task =>( 
                         <li key={task.id}>{task.task}</li>
                     ))}
-                {tasks.task}
             </ul>
         </div>
     );

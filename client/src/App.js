@@ -5,11 +5,12 @@ import Header from './components/commun/Header';
 import Home from './components/Home';
 import Login from './components/Login';
 import { Provider as AuthProvider} from './context/AuthContext';
-
+import FetchTasks from './actions/FetchTasks';
 
 
 function App() {
 
+  const {tasks} = FetchTasks();
 
   return (
     
@@ -19,7 +20,7 @@ function App() {
             <Header />
               <Switch>
                 <Route exact path='/'>
-                  <Home />
+                  <Home tasks={tasks}/>
                 </Route>
                 <Route path='/login'>
                   <Login />
