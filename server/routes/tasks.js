@@ -34,7 +34,7 @@ router.post('/mytasks',validateTask ,async (req, res) => {
     const date = moment().format('YYYY-MM-D H:mm:ss');
 
     await db.query(`INSERT INTO tasks(user_id, task, is_done, day, hour, created_at, updated_at)
-    VALUES ('${user.id}','${task.task}','${task.is_done}','${task.day}','${task.hour}','${date}','${date}')`);
+    VALUES ('${user.id}','${task.task}','${task.is_done}',NULLIF(${task.day},null)::date,NULLIF(${task.hour},null)::time,'${date}','${date}')`);
     
     res.send('Task added successfully !');
 })

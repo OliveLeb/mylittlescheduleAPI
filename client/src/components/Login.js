@@ -1,43 +1,54 @@
-import React, { useEffect, useState } from 'react';
-import { isAuthenticated } from '../actions/auth';
+import React, { useState} from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import dataService from '../services/authService';
+import Englobant from '../HOC/authHOC';
 
-const Login = () => {
+const Login = ({isLogged,setIsLogged}) => {
+
+    const history = useHistory();
+    const location = useLocation();
+    const { from } = location.state || { from: { pathname: "/" } };
 
 const [data,setData] = useState({
     email: '',
     password: ''
 });
-const [loggedIn, setLoggedIn] = useState(false);
+
 
 const onSubmitForm = (e) => {
     e.preventDefault();
     dataService.login(data)
     .then(res=>{
         console.log(res);
-        localStorage.setItem('x-access-token', res.data.token);
+        if(res.data.token) {
+            localStorage.setItem('x-access-token', res.data.token);
+            setIsLogged(true);
+        };
+        history.replace(from);
     })
     .catch(e=>{
         console.log(e);
     });
-}
+};
 
 const changeInput = (e) => {
     setData({
         ...data,
         [e.target.name]: e.target.value,
-    })
-}
+    });
+};
 
-useEffect(() => {
-    if(isAuthenticated) setLoggedIn(true);
-},[])
 
+const loggOut = () => {
+    localStorage.removeItem('x-access-token');
+    setIsLogged(false);
+};
 
 
     return (
         <>
-            {loggedIn ? 'logged in' : null}
+            {isLogged ? (<button onClick={loggOut}>Disconnect</button>) : null}
+            {isLogged}
             <h1>Se connecter</h1>
             <form onSubmit={onSubmitForm}>
                 <label htmlFor='email'>Email</label>
@@ -47,8 +58,9 @@ useEffect(() => {
                 <input type='password' name='password' onChange={changeInput} value={data.password}></input>
                 <button type='submit'>Se connecter</button>
             </form>
+            
         </>
     );
 };
 
-export default Login;
+export default Englobant(Login);
