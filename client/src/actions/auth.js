@@ -1,15 +1,40 @@
-import {useEffect, useContext} from 'react';
-import {Context as AuthContext} from '../context/AuthContext';
-
-export const IsAuthenticated = () => {
-    const {setIsLogged} = useContext(AuthContext);
-    const token = localStorage.getItem('x-access-token');
-    useEffect(()=>{
-        if(token) setIsLogged(true);
-    },[token]);
+const connect = (dispatch) => {
+    return () =>{
+        dispatch({
+            type: 'LOGIN_SUCCESS'
+        });
+    }
 };
 
-export const loggOut = (setIsLogged) => {
-    localStorage.removeItem('x-access-token');
-    setIsLogged(false);
+const handleInput = (dispatch) => {
+    return (e) => {
+        dispatch({
+            type:'CHANGE_INPUT',
+            payload:{[e.target.name]: e.target.value},
+        });
+    };
+    
 };
+
+const handleSubmit = (dispatch) => {
+    return (e) => {
+        e.preventDefault();
+        dispatch({
+            type: 'LOGIN_SUCCESS'
+        });        
+    };
+};
+
+const disconnect = (dispatch) => {
+    return (e) => {
+        e.preventDefault();
+        localStorage.removeItem('x-access-token');
+        dispatch({
+            type:'LOG_OUT'
+        });
+    };
+};
+
+const actions = { connect, handleInput, handleSubmit, disconnect }
+
+export default actions;

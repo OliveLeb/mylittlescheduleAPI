@@ -1,36 +1,30 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
-import Header from './components/commun/Header';
 import Home from './components/Home';
+import Header from './components/common/Header';
 import Login from './components/Login';
-import { Provider as AuthProvider} from './context/AuthContext';
-import FetchTasks from './actions/FetchTasks';
-
+import {Provider as AuthProvider} from './context/AuthContext';
+import { Provider as TaskProvider} from './context/TaskContext';
 
 function App() {
-
-  const {tasks} = FetchTasks();
-
   return (
-    
-      <div className="App">
+    <AuthProvider>
+      <TaskProvider>
+        <div className="App">
         <Router>
-          <AuthProvider>
-            <Header />
-              <Switch>
-                <Route exact path='/'>
-                  <Home tasks={tasks}/>
-                </Route>
-                <Route path='/login'>
-                  <Login />
-                </Route>
-              </Switch>
-            </AuthProvider>
+          <Header />
+          <Switch>
+            <Route exact path='/'>
+                <Home />
+            </Route>
+            <Route path='/login'>
+                <Login />
+            </Route>
+          </Switch>
         </Router>
-      </div>
-      
-    
+        </div>
+      </TaskProvider>
+    </AuthProvider>
   );
 }
 

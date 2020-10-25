@@ -1,6 +1,5 @@
-//import { useState } from 'react';
-import DataContext from './DataContext';
+import CreateContext from './CreateContext';
+import authReducer, { initialState } from '../reducers/authReducer';
+import actions from '../actions/auth';
 
-//const [isLogged, setIsLogged] = useState(false);
-
-export const {Context,Provider} = DataContext();
+export const {Context, Provider} = CreateContext(authReducer,actions,initialState);

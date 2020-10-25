@@ -4,4 +4,6 @@ const getTasks = () => {
     return http.get('task/mytasks');
 }
 
-export default {getTasks};
+
+const TaskService = {getTasks}
+export default TaskService;

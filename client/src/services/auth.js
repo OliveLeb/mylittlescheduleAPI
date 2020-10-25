@@ -5,4 +5,5 @@ const login = (data) => {
     return http.post('/login',data);
 };
 
-export default {login};
+const DataService = {login}
+export default DataService;

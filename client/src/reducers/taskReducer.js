@@ -1,5 +1,5 @@
 export const initialState = {
-    task: {
+    newTask : {
         user_id:'',
         task:'',
         is_done:false,
@@ -10,32 +10,27 @@ export const initialState = {
     hasError: false
 }
 
-const TaskReducer = (state,action) => {
+const taskReducer = (state,action) => {
     switch(action.type) {
-        case 'ADD_TASK' :
+        case 'RESET_TASKS':
             return {
                 ...state,
-                task: {
-                    ...state.task,
-                    ...action
-                }
+                tasks: []
             };
-        case 'FETCH_TASKS_SUCCESS' :
+        case 'FETCH_TASKS_SUCCESS':
             return {
                 ...state,
                 tasks: [...state.tasks,...action.payload],
                 hasError: false
             };
-        case 'HAS_ERROR' : 
+        case 'HAS_ERROR':
             return {
                 ...state,
-                hasError:true
+                hasError: true
             };
-        default :
-            return {
-                state
-            };
-    };
+        default:
+            return state
+    }
 };
 
-export default TaskReducer;
+export default taskReducer;

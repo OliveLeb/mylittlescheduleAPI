@@ -1,15 +1,21 @@
 import axios from 'axios';
 
-const token = localStorage.getItem('x-access-token');
 
 const http = axios.create({
     baseURL: 'http://localhost:3001',
     //cancelToken: new CancelToken((cancel)=>{    })
     headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
     },
 })
 
-http.defaults.headers.common['auth-token'] = token;
+http.interceptors.request.use((config)=>{
+    const token = localStorage.getItem('x-access-token');
+    if(token) config.headers.common['auth-token'] = token;
+    return config;
+},
+    error => Promise.reject(error)
+);
+
 
 export default http;

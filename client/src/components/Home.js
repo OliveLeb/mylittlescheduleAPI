@@ -1,20 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context as AuthContext} from '../context/AuthContext';
 import TasksList from './TasksList';
-import Englobant from '../HOC/authHOC';
-import AddTask from './AddTask';
 
-const Home = ({isLogged,tasks}) => {
+const Home = () => {
 
+    const {isLogged} = useContext(AuthContext)
 
     return (
         <>
-            Home
-        {
-            isLogged ? <TasksList tasks={tasks} /> : 'bonjour'
-        }
-        <AddTask />
+            <section>
+                HOME
+            </section>
+            {isLogged && <TasksList />}
         </>
-    );
-};
+    )
+}
 
-export default Englobant(Home);
+export default Home;
