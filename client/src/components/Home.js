@@ -9,9 +9,9 @@ const Home = () => {
 
     return (
         <>
-            {isLogged && <h1>Bonjour {loggedUser.firstname} {loggedUser.lastname}</h1>}
+            {isLogged && <h2>Bonjour {loggedUser.firstname} {loggedUser.lastname}</h2>}
             <section>
-                <p>Ajouter vos tâches</p>
+                <h3>Ajouter vos tâches</h3>
             </section>
             {isLogged && <TasksList />}
             <AddTask />

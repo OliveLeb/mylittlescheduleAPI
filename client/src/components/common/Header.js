@@ -37,7 +37,7 @@ const Header = () => {
             <nav>
                 <ul>
                     {isLogged
-                    ? <li><button type='button' onClick={logOut}>Se déconnecter</button></li>
+                    ? <li><button type='button' onClick={logOut} className='btn btn-secondary'>Se déconnecter</button></li>
                     : <li><NavLink to='/login'>Se connecter</NavLink></li>
                     }
                 </ul>

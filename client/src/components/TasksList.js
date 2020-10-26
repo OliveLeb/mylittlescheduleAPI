@@ -22,10 +22,10 @@ const TasksList = () => {
             <ul>
                 {
                     tasks.map(task => (
-                        <li key={task.id}>
-                            <input type='checkbox' name={task.id} />
+                        <li key={task.id} className='d-flex justify-content-between alert'>
+                            <input type='checkbox' className="form-check-input" name={task.id} />
                             <label htmlFor={task.id} >{task.task}</label>
-                            <button type='button' onClick={()=>deleteTask(task.id)}>x</button>
+                           <button type='button' className='btn btn-danger' onClick={()=>deleteTask(task.id)}>x</button>
                         </li>
                     ))
                 }

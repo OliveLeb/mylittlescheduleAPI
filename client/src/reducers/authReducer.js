@@ -10,7 +10,11 @@ export const initialState = {
         picture: ''
     },
     isLogged: false,
-    hasError: false
+    hasError: {
+        email:false,
+        password:false
+    },
+    errorMessage :''
 }
 
 const authReducer = (state, action) => {
@@ -26,6 +30,13 @@ const authReducer = (state, action) => {
                 loggedUser:{...state.loggedUser,...action.payload},
                 isLogged: true
             };
+        case 'LOGIN_FAILURE':
+            return {
+                ...state,
+                isLogged:false,
+                hasError: {...state.hasError, ...action.payload.error},
+                errorMessage: action.payload.errorMessage
+            }
         case 'LOG_OUT':
             return {
                 ...state,
@@ -40,6 +51,15 @@ const authReducer = (state, action) => {
                     picture: ''
                 },
                 isLogged: false
+            }
+        case 'RESET_ERROR':
+            return {
+                ...state,
+                hasError: {
+                    email:false,
+                    password:false
+                },
+                errorMessage :''
             }
         default :
             return state;    

@@ -18,11 +18,15 @@ const AddTask = () => {
     };
 
     return (
+        <section>
         <form onSubmit={handleSubmit}>
+            <div className='form-group'>
             <label htmlFor='task'></label>
-            <input type='text' name='task' placeholder='Add your task' onChange={handleTaskInput} value={newTask.task}/>
+            <input type='text' className='form-control' name='task' placeholder='Add your task' onChange={handleTaskInput} value={newTask.task}/>
+            </div>  
             <button type='submit'>Ajouter</button>
         </form>
+        </section>
     )
 }
 

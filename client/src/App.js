@@ -10,7 +10,7 @@ function App() {
   return (
     <AuthProvider>
       <TaskProvider>
-        <div className="App">
+        <div className="App container">
         <Router>
           <Header />
           <Switch>

@@ -35,7 +35,25 @@ const disconnect = (dispatch) => {
         });
     };
 };
+const resetError = (dispatch)=> {
+    return () => {
+        dispatch({type:'RESET_ERROR'});
+    };
+};
 
-const actions = { connect, handleInput, handleSubmit, disconnect }
+const handleError = (dispatch) => {
+    return (errType,message) => {
+        dispatch({
+            type:'LOGIN_FAILURE',
+            payload: {
+                errorMessage:message,
+                error:{[errType]:true}
+            }                      
+        });
+        //console.log(errType)
+    };
+};
+
+const actions = { connect, handleInput, handleSubmit, disconnect, handleError, resetError}
 
 export default actions;

@@ -11,10 +11,12 @@ const Login = () => {
     const { from } = location.state || { from: { pathname: "/" } };
 
 
-    const {user,handleInput,connect} = useContext(AuthContext);
+    const {user,hasError,errorMessage,handleInput,connect,handleError, resetError} = useContext(AuthContext);
+
     
     const handleSubmit = (e) => {
         e.preventDefault();
+        resetError();
         DataService.login(user)
             .then(res => {
                 if(res.data.token){
@@ -24,18 +26,36 @@ const Login = () => {
                 };
             })
             .catch(err => {
-                console.log(err);
+                if(err.request){
+                   const error = JSON.parse(err.request.response);
+                    switch(error.type){
+                        case 'password':
+                            handleError(error.type,'Mot de passe invalide.');
+                            break;
+                        case 'email':
+                            handleError(error.type,'Il n\'existe pas de compte avec cet email.');
+                            break;
+                        default:
+                            console.log(err);
+                    }
+                }
             });
     }
 
     return (
 
         <form onSubmit={handleSubmit}>
-            <label htmlFor='email'>Email</label>
-            <input type='text' name='email' value={user.email} onChange={handleInput}/>
-            <label htmlFor='password'>Mot de passe</label>
-            <input type='password' name='password' value={user.password} onChange={handleInput}/>
-            <button type='submit'>Se connecter</button>
+            <div className='form-group'>
+                <label htmlFor='email'>Email</label>
+                <input type='text' className='form-control' name='email' value={user.email} onChange={handleInput} required/>
+                {hasError.email ? <p className='text-danger'>{errorMessage}</p> : null}
+            </div>
+            <div className='form-group'>
+                <label htmlFor='password'>Mot de passe</label>
+                <input type='password' className='form-control' name='password' value={user.password} onChange={handleInput} required/>
+                {hasError.password ? <p className='text-danger'>{errorMessage}</p> : null}
+            </div>
+            <button type='submit' className='btn btn-primary'>Se connecter</button>
         </form>
 
     )
