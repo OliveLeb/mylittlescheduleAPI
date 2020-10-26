@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Context as TaskContext} from '../context/TaskContext';
 import TaskService from '../services/userTasks';
+import TasksListItem from './TasksListItem/TasksListItem';
 
 const TasksList = () => {
 
@@ -45,19 +46,12 @@ const TasksList = () => {
     }
 
     return (
+
         <section>
-            <ul>
-                {
-                    tasks.map(task => (
-                        <li key={task.id} className='d-flex justify-content-between alert'>
-                            <input type='checkbox' className="form-check-input" name={task.id} onChange={()=>toggleIsDone(task)} checked={task.is_done}/>
-                            <label htmlFor={task.id} >{task.task}</label>
-                           <button type='button' className='btn btn-danger' onClick={()=>deleteTask(task)}>x</button>
-                        </li>
-                    ))
-                }
-            </ul>
+                <h4>Vos tâches du jour</h4>
+                <TasksListItem toggleIsDone={toggleIsDone} deleteTask={deleteTask}/>
         </section>
+
     )
 };
 

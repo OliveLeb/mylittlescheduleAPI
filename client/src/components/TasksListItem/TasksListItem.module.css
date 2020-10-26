@@ -1,0 +1,11 @@
+.complete {
+  text-decoration: line-through;
+}
+.notCompleted {
+  border-color: #000;
+}
+.completed {
+  background-color: #caffbf;
+  color: #2d781e;
+  border-color: #2d781e;
+}

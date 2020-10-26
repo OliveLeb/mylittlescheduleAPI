@@ -10,9 +10,6 @@ const Home = () => {
     return (
         <>
             {isLogged && <h2>Bonjour {loggedUser.firstname} {loggedUser.lastname}</h2>}
-            <section>
-                <h3>Ajouter vos tâches</h3>
-            </section>
             {isLogged && <TasksList />}
             <AddTask />
         </>
