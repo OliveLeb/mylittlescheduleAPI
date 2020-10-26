@@ -46,7 +46,12 @@ const taskReducer = (state,action) => {
                 },
                 tasks: [...state.tasks, action.payload],
                 hasError: false
-            }
+            };
+        case 'TOGGLE_ISDONE':
+            return {
+                ...state,
+                tasks: [...action.payload]
+            };
         case 'DELETE_TASK':
             return {
                 ...state,

@@ -43,6 +43,15 @@ const addTaskSuccess = (dispatch) => {
     };
 };
 
+const changeIsDone = (dispatch) => {
+    return (newTasks) => {
+        dispatch({
+            type:'TOGGLE_ISDONE',
+            payload: [...newTasks]
+        })
+    }
+};
+
 const deleteTaskSuccess = (dispatch) => {
     return (newTasks) => {
         dispatch({
@@ -52,5 +61,5 @@ const deleteTaskSuccess = (dispatch) => {
     };
 };
 
-const actions = {fetchTasks,reset,handleTaskInput,addTaskSuccess,deleteTaskSuccess};
+const actions = {fetchTasks,reset,handleTaskInput,addTaskSuccess,deleteTaskSuccess, changeIsDone};
 export default actions;
