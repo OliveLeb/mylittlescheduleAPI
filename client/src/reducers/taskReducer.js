@@ -1,6 +1,5 @@
 export const initialState = {
     newTask : {
-        user_id:'',
         task:'',
         is_done:false,
         day:null,
@@ -28,6 +27,14 @@ const taskReducer = (state,action) => {
                 ...state,
                 hasError: true
             };
+        case 'INPUT_TASK':
+            return {
+                ...state,
+                newTask : {
+                    ...state.newTask,
+                    ...action.payload
+                }
+            }
         default:
             return state
     }

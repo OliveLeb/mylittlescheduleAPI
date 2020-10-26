@@ -25,5 +25,14 @@ const reset = (dispatch) => {
     };
 };
 
-const actions = {fetchTasks,reset};
+const handleTaskInput = (dispatch) => {
+    return (e) => {
+        dispatch({
+            type:'INPUT_TASK',
+            payload: {[e.target.name]: e.target.value}
+        });
+    };
+};
+
+const actions = {fetchTasks,reset,handleTaskInput};
 export default actions;
