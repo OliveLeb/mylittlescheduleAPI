@@ -10,7 +10,6 @@ const AddTask = () => {
         e.preventDefault();
         TaskService.createTask(newTask)
         .then(res=>{
-            console.log(res);
             addTaskSuccess(newTask);
         })
         .catch(err=>{

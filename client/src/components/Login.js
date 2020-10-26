@@ -17,7 +17,6 @@ const Login = () => {
         e.preventDefault();
         DataService.login(user)
             .then(res => {
-                //console.log(res);
                 if(res.data.token){
                     localStorage.setItem('x-access-token', res.data.token);
                     connect(res.data.user);

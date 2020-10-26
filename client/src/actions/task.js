@@ -43,5 +43,14 @@ const addTaskSuccess = (dispatch) => {
     };
 };
 
-const actions = {fetchTasks,reset,handleTaskInput,addTaskSuccess};
+const deleteTaskSuccess = (dispatch) => {
+    return (newTasks) => {
+        dispatch({
+            type:'DELETE_TASK',
+            payload: newTasks
+        });
+    };
+};
+
+const actions = {fetchTasks,reset,handleTaskInput,addTaskSuccess,deleteTaskSuccess};
 export default actions;

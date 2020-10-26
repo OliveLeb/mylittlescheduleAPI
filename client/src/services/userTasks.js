@@ -8,5 +8,9 @@ const createTask = (data) => {
     return http.post('task/mytasks',data);
 }
 
-const TaskService = {getTasks,createTask};
+const deleteTask = id => {
+    return http.delete(`task/mytasks/${id}`);
+};
+
+const TaskService = {getTasks,createTask,deleteTask};
 export default TaskService;

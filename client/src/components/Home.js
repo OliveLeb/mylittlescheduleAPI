@@ -9,7 +9,7 @@ const Home = () => {
 
     return (
         <>
-            <h1>Bonjour {loggedUser.firstname} {loggedUser.lastname}</h1>
+            {isLogged && <h1>Bonjour {loggedUser.firstname} {loggedUser.lastname}</h1>}
             <section>
                 <p>Ajouter vos tâches</p>
             </section>

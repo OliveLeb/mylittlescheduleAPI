@@ -33,6 +33,12 @@ const authReducer = (state, action) => {
                     email: '',
                     password: ''
                 },
+                loggedUser: {
+                    firstname: '',
+                    lastname: '',
+                    email: '',
+                    picture: ''
+                },
                 isLogged: false
             }
         default :

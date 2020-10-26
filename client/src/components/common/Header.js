@@ -17,7 +17,6 @@ const Header = () => {
         if(token) {
             DataService.getUserData()
             .then(res=>{
-                console.log(res);
                 connect(res.data[0])
             })
             .catch(err=>{
