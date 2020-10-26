@@ -5,5 +5,9 @@ const login = (data) => {
     return http.post('/login',data);
 };
 
-const DataService = {login}
+const getUserData = () => {
+    return http.get('/user/loggedUser');
+}
+
+const DataService = {login,getUserData};
 export default DataService;

@@ -14,6 +14,12 @@ routerUser.get('/', verifyToken,async (req,res)=> {
     res.send(rows);
 });
 
+routerUser.get('/loggedUser',verifyToken, async(req,res) => {
+    const id = req.user.id;
+    const {rows} = await db.query(`SELECT firstname,lastname,email, picture FROM users WHERE id=${id}`);
+    res.send(rows);
+})
+
 routerUser.put('/:id', async (req,res) => {
     const id = req.params.id;
     const body = req.body;

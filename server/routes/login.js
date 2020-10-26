@@ -18,6 +18,12 @@ router.post('/',[validateUserLogin,verifyCredentials], async (req,res) => {
 
     res.status(200).header('auth-token', token).send({
         message: 'Token created, logged in',
+        user:{
+            firstname:user.firstname,
+            lastname:user.lastname,
+            email: user.email,
+            picture: user.picture
+        },
         token: token
     });
     

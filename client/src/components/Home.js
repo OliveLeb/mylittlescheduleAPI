@@ -5,10 +5,11 @@ import TasksList from './TasksList';
 
 const Home = () => {
 
-    const {isLogged} = useContext(AuthContext)
+    const {isLogged, loggedUser} = useContext(AuthContext)
 
     return (
         <>
+            <h1>Bonjour {loggedUser.firstname} {loggedUser.lastname}</h1>
             <section>
                 <p>Ajouter vos tâches</p>
             </section>

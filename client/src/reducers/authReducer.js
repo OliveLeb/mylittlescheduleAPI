@@ -3,6 +3,12 @@ export const initialState = {
         email :'',
         password: ''
     },
+    loggedUser: {
+        firstname: '',
+        lastname: '',
+        email: '',
+        picture: ''
+    },
     isLogged: false,
     hasError: false
 }
@@ -17,6 +23,7 @@ const authReducer = (state, action) => {
         case 'LOGIN_SUCCESS':
             return {
                 ...state,
+                loggedUser:{...state.loggedUser,...action.payload},
                 isLogged: true
             };
         case 'LOG_OUT':

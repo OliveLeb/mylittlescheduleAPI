@@ -1,7 +1,8 @@
 const connect = (dispatch) => {
-    return () =>{
+    return (data) =>{
         dispatch({
-            type: 'LOGIN_SUCCESS'
+            type: 'LOGIN_SUCCESS',
+            payload: {...data}
         });
     }
 };
