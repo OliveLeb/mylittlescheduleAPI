@@ -8,30 +8,27 @@ const FetchTasks = (isLogged) => {
     
     useEffect(() => {
 
-        const getData = () => {
-/*
+        const getData = async () => {
+
             try {
-                //await reset();
-                //console.log('try');
                 const res = await TaskService.getTasks();
-                //console.log(res);
                 fetchTasks(res);
             }
             catch(error) {
-                console.log('error',error)
-            };*/
-            TaskService.getTasks()
+                console.log('error : ',error)
+            };
+           /* TaskService.getTasks()
             .then(res=>{
                 fetchTasks(res);
             })
             .catch(err=>{
                 console.log(err);
-            });
+            });*/
 
 
         };
 
-        if(isLogged && tasks.length === 0) getData();
+        if(isLogged && tasks.length === 0 ) getData();
 
 
     },[isLogged]);

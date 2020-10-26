@@ -10,7 +10,7 @@ const Home = () => {
     return (
         <>
             <section>
-                <p>Ajouter vos</p>
+                <p>Ajouter vos tâches</p>
             </section>
             {isLogged && <TasksList />}
             <AddTask />

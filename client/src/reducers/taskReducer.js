@@ -6,7 +6,8 @@ export const initialState = {
         hour:null
     },
     tasks: [],
-    hasError: false
+    hasError: false,
+    isCreated: false,
 }
 
 const taskReducer = (state,action) => {
@@ -14,7 +15,8 @@ const taskReducer = (state,action) => {
         case 'RESET_TASKS':
             return {
                 ...state,
-                tasks: []
+                tasks: [],
+                isCreated:false,
             };
         case 'FETCH_TASKS_SUCCESS':
             return {
@@ -34,6 +36,19 @@ const taskReducer = (state,action) => {
                     ...state.newTask,
                     ...action.payload
                 }
+            }
+        case 'ADD_TASK_SUCCESS':
+            return {
+                ...state,
+                newTask : {
+                    task:'',
+                    is_done:false,
+                    day:null,
+                    hour:null
+                },
+                tasks: [...state.tasks, action.payload],
+                hasError: false,
+                isCreated: true
             }
         default:
             return state

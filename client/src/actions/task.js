@@ -34,5 +34,14 @@ const handleTaskInput = (dispatch) => {
     };
 };
 
-const actions = {fetchTasks,reset,handleTaskInput};
+const addTaskSuccess = (dispatch) => {
+    return (newTask) => {
+        dispatch({
+            type:'ADD_TASK_SUCCESS',
+            payload: {...newTask}
+        });
+    };
+};
+
+const actions = {fetchTasks,reset,handleTaskInput,addTaskSuccess};
 export default actions;
