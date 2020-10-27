@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Context as TaskContext} from '../context/TaskContext';
 import TaskService from '../services/userTasks';
+import AddTask from './AddTask';
 import TasksListItem from './TasksListItem/TasksListItem';
 
 const TasksList = () => {
@@ -46,12 +47,17 @@ const TasksList = () => {
     }
 
     return (
-
+        <>
         <section>
-                <h4>Vos tâches du jour</h4>
-                <TasksListItem toggleIsDone={toggleIsDone} deleteTask={deleteTask}/>
+                {tasks.length !==0 ? <h4>Vos tâches du jour</h4> : <h4>Ajouter des tâches</h4>}
+        </section>        
+        
+        <TasksListItem toggleIsDone={toggleIsDone} deleteTask={deleteTask}/>
+        
+        <section>
+            <AddTask />
         </section>
-
+        </>
     )
 };
 

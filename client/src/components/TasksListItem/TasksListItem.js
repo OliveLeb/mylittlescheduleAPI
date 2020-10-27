@@ -10,7 +10,7 @@ const TasksListItem = ({toggleIsDone, deleteTask}) => {
         <ul>
             {
                 tasks.map((task,index) => (
-                    <li key={index} className={'d-flex justify-content-between alert ' + (task.is_done ? styles.completed : styles.notCompleted)}>
+                    <li key={index} className={'d-flex justify-content-between shadow p-3 mb-5 rounded ' + (task.is_done ? styles.completed : styles.notCompleted)}>
                        
                         <input type='checkbox'
                         name={task.id} onChange={()=>toggleIsDone(task)} checked={task.is_done}/>

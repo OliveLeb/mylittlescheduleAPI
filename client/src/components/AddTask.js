@@ -18,7 +18,6 @@ const AddTask = () => {
     };
 
     return (
-        <section>
         <form onSubmit={handleSubmit}>
             <div className='form-group'>
             <label htmlFor='task'></label>
@@ -26,7 +25,6 @@ const AddTask = () => {
             </div>  
             <button type='submit'>Ajouter</button>
         </form>
-        </section>
     )
 }
 

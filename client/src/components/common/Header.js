@@ -4,6 +4,7 @@ import { Context as AuthContext} from '../../context/AuthContext';
 import { Context as TaskContext } from '../../context/TaskContext';
 import FetchTasks from '../../hooks/FetchTasks';
 import DataService from '../../services/auth';
+import NavBar from './NavBar/NavBar';
 
 const Header = () => {
 
@@ -32,16 +33,8 @@ const Header = () => {
 
 
     return (
-        <header>
-            <NavLink to='/'><h1>My little schedule</h1></NavLink>
-            <nav>
-                <ul>
-                    {isLogged
-                    ? <li><button type='button' onClick={logOut} className='btn btn-secondary'>Se déconnecter</button></li>
-                    : <li><NavLink to='/login'>Se connecter</NavLink></li>
-                    }
-                </ul>
-            </nav>
+        <header>           
+                <NavBar isLogged={isLogged} logOut={logOut}/>            
         </header>
     )
 }

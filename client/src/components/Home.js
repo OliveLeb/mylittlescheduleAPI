@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 import { Context as AuthContext} from '../context/AuthContext';
-import AddTask from './AddTask';
-import TasksList from './TasksList';
 
 const Home = () => {
 
@@ -9,9 +7,10 @@ const Home = () => {
 
     return (
         <>
-            {isLogged && <h2>Bonjour {loggedUser.firstname} {loggedUser.lastname}</h2>}
-            {isLogged && <TasksList />}
-            <AddTask />
+            {isLogged && <h2>Bonjour {loggedUser.firstname}</h2>}
+            <section>
+                Planifiez votre journée tranquillement !
+            </section>
         </>
     )
 }
