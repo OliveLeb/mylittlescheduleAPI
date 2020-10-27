@@ -1,10 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Context as TaskContext} from '../context/TaskContext';
 import TaskService from '../services/userTasks';
 import AddTask from './AddTask';
 import TasksListItem from './TasksListItem/TasksListItem';
+import { ImBin } from 'react-icons/im';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const TasksList = () => {
+
+    const [hideTaskDone, setHideTaskDone] = useState(false);
 
     const {tasks,deleteTaskSuccess, changeIsDone} = useContext(TaskContext);
 
@@ -46,13 +50,40 @@ const TasksList = () => {
         })
     }
 
+    const hideTasksDone = () => {
+        setHideTaskDone(prevState => !prevState);
+    }
+
     return (
         <>
         <section>
                 {tasks.length !==0 ? <h4>Vos tâches du jour</h4> : <h4>Ajouter des tâches</h4>}
+        </section>
+
+        <section>
+            <p>
+                <ImBin style={{color:'red'}}/>
+                Supprimer tâches complétées
+            </p>
+            <div onClick={hideTasksDone}>
+                {hideTaskDone ? <FaEyeSlash title='Montrer les tâches complétées'/> : <FaEye title='Masquer les tâches complétées'/>}
+            </div>
         </section>        
-        
-        <TasksListItem toggleIsDone={toggleIsDone} deleteTask={deleteTask}/>
+
+        <section>
+            <ul>
+            {hideTaskDone
+                ?
+                tasks.filter(task=>task.is_done === false).map((task,index)=> (
+                    <TasksListItem toggleIsDone={toggleIsDone} deleteTask={deleteTask} task={task} key={index}/>
+                ))
+
+                : tasks.map((task,index) => (
+                    <TasksListItem toggleIsDone={toggleIsDone} deleteTask={deleteTask} task={task} key={index}/>
+                ))
+            }
+            </ul>   
+        </section>     
         
         <section>
             <AddTask />

@@ -1,16 +1,14 @@
-import React, { useContext } from 'react'
-import { Context as TaskContext} from '../../context/TaskContext'
+import React from 'react';
 import styles from './TasksListItem.module.css';
 
-const TasksListItem = ({toggleIsDone, deleteTask}) => {
+const TasksListItem = ({toggleIsDone, deleteTask,task}) => {
 
-    const {tasks} = useContext(TaskContext);
+
 
     return (
-        <ul>
-            {
-                tasks.map((task,index) => (
-                    <li key={index} className={'d-flex justify-content-between shadow p-3 mb-5 rounded ' + (task.is_done ? styles.completed : styles.notCompleted)}>
+      
+            
+                    <li className={'d-flex justify-content-between shadow p-3 mb-5 rounded ' + (task.is_done ? styles.completed : styles.notCompleted)}>
                        
                         <input type='checkbox'
                         name={task.id} onChange={()=>toggleIsDone(task)} checked={task.is_done}/>
@@ -19,9 +17,8 @@ const TasksListItem = ({toggleIsDone, deleteTask}) => {
                     
                         <button type='button' className='btn btn-danger' onClick={()=>deleteTask(task.id)}>x</button>
                     </li>
-                ))
-            }
-        </ul>
+    
+        
     )
 }
 

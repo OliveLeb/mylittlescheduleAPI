@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { Context as AuthContext} from '../context/AuthContext';
+import { FaReact, FaNodeJs } from 'react-icons/fa';
+import { SiPostgresql } from 'react-icons/si';
 
 const Home = () => {
 
@@ -10,6 +12,18 @@ const Home = () => {
             {isLogged && <h2>Bonjour {loggedUser.firstname}</h2>}
             <section>
                 Planifiez votre journée tranquillement !
+                <p>
+                    Créez un compte et connectez vous pour retrouver votre TO DO LIST à tout moment !
+                </p>
+            </section>
+            <section>
+                <h5>PERN stack</h5> 
+                <ul>
+                    <li>React <FaReact style={{color:'#61dafb',fontSize:'1.5rem'}}/></li>
+                    <li>Express.js</li>
+                    <li>PostgreSQL <SiPostgresql style={{color:'#326691',fontSize:'1.5rem'}} /></li>
+                    <li>Node.js <FaNodeJs style={{color:'#689f63',fontSize:'1.5rem'}} /></li>                                
+                </ul>
             </section>
         </>
     )

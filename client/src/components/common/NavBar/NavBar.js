@@ -25,7 +25,7 @@ const NavBar = ({isLogged, logOut}) => {
              
                     <li>
                     {isLogged
-                    ? <span onClick={logOut} className='btn btn-link'><FiLogOut /> Log Out</span>
+                    ? <NavLink to='#' onClick={logOut}><FiLogOut /> Log Out</NavLink>
                     : <NavLink to='/login'><FiLogIn />Log In</NavLink>
                     }
                     </li>
