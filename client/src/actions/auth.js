@@ -54,6 +54,30 @@ const handleError = (dispatch) => {
     };
 };
 
-const actions = { connect, handleInput, handleSubmit, disconnect, handleError, resetError}
+const handleRegisterInput = (dispatch) => {
+    return (e) => {
+        dispatch({
+            type:'ADD_NEW_USER',
+            payload:{[e.target.name]:e.target.value}
+        });
+    };
+};
+
+const handleErrors = (dispatch) => {
+    return (errors) => {
+        dispatch({
+            type:'ERROR_FORM',
+            payload:{...errors}
+        });
+    };
+};
+
+const resetErrorForm = (dispatch) => {
+    return () => {
+        dispatch({type:'RESET_ERROR_FORM'})
+    };
+};
+
+const actions = { connect, handleInput, handleSubmit, disconnect, handleError, resetError, handleRegisterInput, handleErrors, resetErrorForm}
 
 export default actions;

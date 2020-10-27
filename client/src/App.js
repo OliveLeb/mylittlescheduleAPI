@@ -9,6 +9,7 @@ import Header from './components/common/Header';
 import Login from './components/Login';
 import Footer from './components/common/Footer';
 import TasksList from './components/TasksList';
+import Register from './components/Register/Register';
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
             </Route>
             <Route path='/login'>
                 <Login />
+            </Route>
+            <Route path='/register'>
+              <Register />
             </Route>
           </Switch>
           </div>

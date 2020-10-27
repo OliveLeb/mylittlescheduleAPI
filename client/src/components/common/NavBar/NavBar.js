@@ -32,7 +32,7 @@ const NavBar = ({isLogged, logOut}) => {
                     <li>
                     {isLogged 
                     ? <NavLink to='#'>Mon Compte</NavLink>
-                    : <NavLink to='#'>Sign In</NavLink>
+                    : <NavLink to='/register'>Sign In</NavLink>
                     }
                     </li>               
             </ul>

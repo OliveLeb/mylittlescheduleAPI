@@ -47,7 +47,7 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
             <div className='form-group'>
                 <label htmlFor='email'>Email</label>
-                <input type='text' className='form-control' name='email' value={user.email} onChange={handleInput} required/>
+                <input type='email' className='form-control' name='email' value={user.email} onChange={handleInput} required/>
                 {hasError.email ? <p className='text-danger'>{errorMessage}</p> : null}
             </div>
             <div className='form-group'>
@@ -55,7 +55,7 @@ const Login = () => {
                 <input type='password' className='form-control' name='password' value={user.password} onChange={handleInput} required/>
                 {hasError.password ? <p className='text-danger'>{errorMessage}</p> : null}
             </div>
-            <button type='submit' className='btn btn-primary'>Se connecter</button>
+            <button type='submit'>Se connecter</button>
         </form>
 
     )

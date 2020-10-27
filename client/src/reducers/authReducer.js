@@ -9,6 +9,22 @@ export const initialState = {
         email: '',
         picture: ''
     },
+    newUser: {
+        firstname: '',
+        lastname: '',
+        email: '',
+        picture: 'null',
+        password: '',
+        repeat_password: '',
+    },
+    newUserError: {
+        firstnameError:'',
+        lastnameError:'',
+        emailError:'',
+        pictureError:'',
+        passwordError:'',
+        repeat_passwordError:''
+    },
     isLogged: false,
     hasError: {
         email:false,
@@ -28,6 +44,7 @@ const authReducer = (state, action) => {
             return {
                 ...state,
                 loggedUser:{...state.loggedUser,...action.payload},
+                user:{email :'',password: ''},
                 isLogged: true
             };
         case 'LOGIN_FAILURE':
@@ -36,7 +53,24 @@ const authReducer = (state, action) => {
                 isLogged:false,
                 hasError: {...state.hasError, ...action.payload.error},
                 errorMessage: action.payload.errorMessage
-            }
+            };
+        case 'ADD_NEW_USER':
+            return {
+                ...state,
+                newUser: {...state.newUser, ...action.payload}
+            };
+        case 'SUBMIT_REGISTER':
+            return {
+                ...state,
+                newUser:{
+                    firstname: '',
+                    lastname: '',
+                    email: '',
+                    picture: 'null',
+                    password: '',
+                    repeat_password: '',
+                }
+            }; 
         case 'LOG_OUT':
             return {
                 ...state,
@@ -51,7 +85,7 @@ const authReducer = (state, action) => {
                     picture: ''
                 },
                 isLogged: false
-            }
+            };
         case 'RESET_ERROR':
             return {
                 ...state,
@@ -60,7 +94,32 @@ const authReducer = (state, action) => {
                     password:false
                 },
                 errorMessage :''
-            }
+            };
+        case 'ERROR_FORM':
+            return {
+                ...state,
+                newUserError: {...state.newUserError, ...action.payload}
+            };
+        case 'RESET_ERROR_FORM':
+            return {
+                ...state,
+                newUserError: {
+                    firstnameError:'',
+                    lastnameError:'',
+                    emailError:'',
+                    pictureError:'',
+                    passwordError:'',
+                    repeat_passwordError:''
+                },
+                newUser: {
+                    firstname: '',
+                    lastname: '',
+                    email: '',
+                    picture: 'null',
+                    password: '',
+                    repeat_password: '',
+                }
+            };
         default :
             return state;    
 

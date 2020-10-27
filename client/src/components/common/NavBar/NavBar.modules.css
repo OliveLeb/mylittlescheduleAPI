@@ -63,7 +63,7 @@
     left: -100%;
     opacity: 1;
     transition: all 1s ease;
-    justify-content: start;
+    justify-content: flex-start;
   }
 
   .navMenu.active {

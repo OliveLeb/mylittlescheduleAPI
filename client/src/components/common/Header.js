@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react';
-import {NavLink} from 'react-router-dom';
 import { Context as AuthContext} from '../../context/AuthContext';
 import { Context as TaskContext } from '../../context/TaskContext';
 import FetchTasks from '../../hooks/FetchTasks';

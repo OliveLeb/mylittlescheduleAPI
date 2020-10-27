@@ -13,8 +13,15 @@ const Home = () => {
             <section>
                 Planifiez votre journée tranquillement !
                 <p>
-                    Créez un compte et connectez vous pour retrouver votre TO DO LIST à tout moment !
+                    Connectez vous pour retrouver votre TO DO LIST à tout moment !
                 </p>
+                <div>
+                    Créez un compte dès maintenant ou essayez avec :
+                    <ul>
+                        <li>email : user@user.fr</li>
+                        <li>password : user5R</li>
+                    </ul>
+                </div>
             </section>
             <section>
                 <h5>PERN stack</h5> 
