@@ -6,6 +6,12 @@
   text-decoration: none;
   font-family: 'Lato', sans-serif;
 }
+body {
+  height: 100%;
+}
+.App {
+  min-height: calc(100vh - 124px);
+}
 
 /* HEADER */
 header h1 {
@@ -19,7 +25,6 @@ header a:hover {
 
 /* FOOTER */
 footer {
-  position: absolute;
   bottom: 0px;
   text-align: center;
   width: 100%;

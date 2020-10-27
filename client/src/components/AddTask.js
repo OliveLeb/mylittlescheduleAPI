@@ -25,7 +25,7 @@ const AddTask = () => {
         border:'1px solid #b01010',
         fontSize:'1.2rem'
     }
-
+    
     return (
         <form onSubmit={handleSubmit} className='text-center'>
             <div className='form-group'>

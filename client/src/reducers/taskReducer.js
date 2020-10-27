@@ -6,7 +6,8 @@ export const initialState = {
         hour:null
     },
     tasks: [],
-    hasError: false
+    hasError: false,
+    isAdded: false
 }
 
 const taskReducer = (state,action) => {
@@ -14,13 +15,15 @@ const taskReducer = (state,action) => {
         case 'RESET_TASKS':
             return {
                 ...state,
-                tasks: []
+                tasks: [],
+                isAdded: false
             };
         case 'FETCH_TASKS_SUCCESS':
             return {
                 ...state,
-                tasks: [...state.tasks,...action.payload],
-                hasError: false
+                tasks: [...action.payload],
+                hasError: false,
+                isAdded:false
             };
         case 'HAS_ERROR':
             return {
@@ -44,8 +47,8 @@ const taskReducer = (state,action) => {
                     day:null,
                     hour:null
                 },
-                tasks: [...state.tasks, action.payload],
-                hasError: false
+                hasError: false,
+                isAdded: true
             };
         case 'TOGGLE_ISDONE':
             return {

@@ -53,14 +53,20 @@ router.put('/mytasks/:id',validateTask ,async (req,res) => {
 })
 
 
+router.delete('/mytasks/completed', async (req,res) => {
+    const user = req.user;
+    const {rows} = await db.query(`DELETE FROM tasks WHERE is_done = TRUE AND user_id='${user.id}' RETURNING id`);
+    res.send({message:'Task deleted.',idDeleted:rows});
+})
+
 router.delete('/mytasks/:id', async (req,res) => {
 
     const id_task = req.params.id;
     const user = req.user;
 
-    await db.query(`DELETE FROM tasks WHERE id='${id_task}' AND user_id='${user.id}'`);
-
-    res.send('Task deleted.');
+    const {rows} = await db.query(`DELETE FROM tasks WHERE id='${id_task}' AND user_id='${user.id}' RETURNING id`);
+    res.send({message:'Task deleted.',idDeleted:rows});
 });
+
 
 module.exports = router;

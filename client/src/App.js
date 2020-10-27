@@ -16,7 +16,7 @@ function App() {
       <TaskProvider>        
         <Router>
           <Header />
-          <div className="App container my-5">
+          <div className="App container py-5">
           <Switch>
             <Route exact path='/'>
                 <Home />

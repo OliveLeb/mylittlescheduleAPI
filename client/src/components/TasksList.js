@@ -12,15 +12,15 @@ const TasksList = () => {
 
     const {tasks,deleteTaskSuccess, changeIsDone} = useContext(TaskContext);
 
-    const deleteTask = (id) => {
-        TaskService.deleteTask(id)
-        .then(res=>{
-            const remainingResult = tasks.filter((result) => result.id !== id);
+    const deleteTask = async (id) => {
+        try {
+            const res = isNaN(id) ? await TaskService.deleteTasksDone() : await TaskService.deleteTask(id);
+            const remainingResult = tasks.filter((result) => !res.data.idDeleted.some(data => data.id === result.id));
             deleteTaskSuccess(remainingResult);
-        })
-        .catch(err=>{
-            console.log(err);
-        });
+        }
+        catch(error) {
+            console.log(error);
+        }
     };
 
     const toggleIsDone = (task) => {
@@ -42,12 +42,12 @@ const TasksList = () => {
             task: taskToAdd.task
         }
         TaskService.updateTask(task.id,data)
-        .then(res=>{
-            console.log(res);
+        .then(res => {
+            console.log('ok');
         })
         .catch(err => {
             console.log(err);
-        })
+        });
     }
 
     const hideTasksDone = () => {
@@ -60,15 +60,17 @@ const TasksList = () => {
                 {tasks.length !==0 ? <h4>Vos tâches du jour</h4> : <h4>Ajouter des tâches</h4>}
         </section>
 
+
+        {tasks.length !==0 &&
         <section>
             <p>
-                <ImBin style={{color:'red'}}/>
-                Supprimer tâches complétées
-            </p>
-            <div onClick={hideTasksDone}>
+                <span style={{cursor:'pointer', margin:'5px 10px'}} onClick={deleteTask}><ImBin style={{color:'red'}}/></span>
+            
+            <span onClick={hideTasksDone} style={{cursor:'pointer', margin:'5px 10px'}}>
                 {hideTaskDone ? <FaEyeSlash title='Montrer les tâches complétées'/> : <FaEye title='Masquer les tâches complétées'/>}
-            </div>
-        </section>        
+            </span>
+            </p>
+        </section> }       
 
         <section>
             <ul>

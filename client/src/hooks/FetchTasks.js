@@ -4,7 +4,7 @@ import TaskService from '../services/userTasks'
 
 const FetchTasks = (isLogged) => {
 
-    const {fetchTasks,tasks} = useContext(TaskContext);
+    const {fetchTasks,tasks,isAdded} = useContext(TaskContext);
     
     useEffect(() => {
 
@@ -28,10 +28,10 @@ const FetchTasks = (isLogged) => {
 
         };
 
-        if(isLogged && tasks.length === 0 ) getData();
+        if(isLogged && (tasks.length === 0 || isAdded) ) getData();
 
 
-    },[isLogged]);
+    },[isLogged,isAdded]);
 
 };
 

@@ -16,5 +16,9 @@ const deleteTask = id => {
     return http.delete(`task/mytasks/${id}`);
 };
 
-const TaskService = {getTasks,createTask,deleteTask, updateTask};
+const deleteTasksDone = () => {
+    return http.delete('task/mytasks/completed');
+}
+
+const TaskService = {getTasks,createTask,deleteTask, updateTask, deleteTasksDone};
 export default TaskService;

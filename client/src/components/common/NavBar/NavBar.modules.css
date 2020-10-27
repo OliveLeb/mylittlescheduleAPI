@@ -63,6 +63,7 @@
     left: -100%;
     opacity: 1;
     transition: all 1s ease;
+    justify-content: start;
   }
 
   .navMenu.active {
@@ -77,6 +78,7 @@
     opacity: 1;
     transition: all 0.5s ease;
     z-index: 1;
+    box-shadow: 0px 5px 10px #fe4c4a;
   }
 
   .navMenu a {
