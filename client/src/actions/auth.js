@@ -74,9 +74,10 @@ const handleErrors = (dispatch) => {
 
 const resetErrorForm = (dispatch) => {
     return () => {
-        dispatch({type:'RESET_ERROR_FORM'})
+        dispatch({type:'RESET_ERROR_FORM'});
     };
 };
+
 
 const actions = { connect, handleInput, handleSubmit, disconnect, handleError, resetError, handleRegisterInput, handleErrors, resetErrorForm}
 

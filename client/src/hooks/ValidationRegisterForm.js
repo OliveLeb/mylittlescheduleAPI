@@ -34,7 +34,7 @@ const ValidationRegisterForm = ( newUser, handleErrors ) => {
             isError = true;
             errors.passwordError = 'Le mot de passe doit comporter entre 6 et 16 caractères. (Au moins une lettre minuscule, une lettre majuscule et un chiffre)';
         }
-        if(!newUser.password !== newUser.repeat_password) {
+        if(newUser.password !== newUser.repeat_password) {
             isError = true;
             errors.repeat_passwordError = 'Les mots de passe ne correspondent pas.';
         }

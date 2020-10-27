@@ -16,6 +16,7 @@ export const initialState = {
         picture: 'null',
         password: '',
         repeat_password: '',
+        is_admin:false
     },
     newUserError: {
         firstnameError:'',
@@ -69,6 +70,7 @@ const authReducer = (state, action) => {
                     picture: 'null',
                     password: '',
                     repeat_password: '',
+                    is_admin:false
                 }
             }; 
         case 'LOG_OUT':
@@ -118,6 +120,7 @@ const authReducer = (state, action) => {
                     picture: 'null',
                     password: '',
                     repeat_password: '',
+                    is_admin:false
                 }
             };
         default :

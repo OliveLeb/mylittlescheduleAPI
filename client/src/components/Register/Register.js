@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Context as AuthContext} from '../../context/AuthContext';
 import ValidationRegisterForm from '../../hooks/ValidationRegisterForm';
+import DataService from '../../services/auth';
 import './Register.modules.css';
 
 const Register = () => {
@@ -11,9 +12,14 @@ const Register = () => {
         e.preventDefault();
         const err = ValidationRegisterForm(newUser,handleErrors);
         if(!err){
-            resetErrorForm();
-        }
-    }
+            DataService.register(newUser)
+            .then(res => {
+                resetErrorForm();
+            })
+            .catch(err => console.log(err));
+            
+        };
+    };
 
     return (
         <form onSubmit={submitRegistration}>
@@ -45,7 +51,7 @@ const Register = () => {
                 <p className='invalid'>{newUserError.repeat_passwordError}</p>
             </div>
             <div className='text-center mt-5'>
-                <button type='submit'>Envoyer</button>
+                <button type='submit' >Envoyer</button>
             </div>
         </form>
     )
