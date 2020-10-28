@@ -10,6 +10,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "dev": "concurrently \"nodemon server.js\" \"cd client && npm run start\"",
     "heroku-postbuild": "cd client && yarn install && yarn run build"   
   },
   "keywords": [],
