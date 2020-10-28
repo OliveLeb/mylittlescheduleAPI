@@ -4,23 +4,24 @@
 const express = require('express');
 const moment = require('moment');
 const db = require('../db');
-const verifyToken = require('../middleware/authorization');
+const verifyScope  = require('../middleware/authorization').verifyScope;
+const verifyToken = require('../middleware/authorization').verifyToken;
 
-const routerUser = express.Router();
-//const routerUser = new Router();
+const router = express.Router();
+//const router = new Router();
 
-routerUser.get('/', verifyToken,async (req,res)=> {
-    const {rows} = await db.query('SELECT * FROM users ORDER BY id ASC');
+router.get('/', [verifyToken,verifyScope],async (req,res)=> {
+    const {rows} = await db.query('SELECT id,firstname,lastname,email,picture,is_admin FROM users ORDER BY id ASC');
     res.send(rows);
 });
 
-routerUser.get('/loggedUser',verifyToken, async(req,res) => {
+router.get('/loggedUser',verifyToken, async(req,res) => {
     const id = req.user.id;
     const {rows} = await db.query(`SELECT firstname,lastname,email, picture, is_admin FROM users WHERE id=${id}`);
     res.send(rows);
 })
 
-routerUser.put('/:id', async (req,res) => {
+router.put('/:id', async (req,res) => {
     const id = req.params.id;
     const body = req.body;
     const date = moment().format('YYYY-MM-D H:mm:ss');
@@ -32,4 +33,4 @@ routerUser.put('/:id', async (req,res) => {
      res.send(body);
 })
 
-module.exports = routerUser;
+module.exports = router;

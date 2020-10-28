@@ -33,7 +33,7 @@ const NavBar = ({isLogged, logOut, loggedUser}) => {
                     {isLogged && loggedUser.is_admin
                     ? <NavLink to='/dashboard'>Dashboard</NavLink>
                     : isLogged 
-                    ? <NavLink to='#'>Mon Compte</NavLink>
+                    ? <NavLink to='/myaccount'>Mon Compte</NavLink>
                     : <NavLink to='/register'>Sign In</NavLink>                   
                     }
                     </li>             

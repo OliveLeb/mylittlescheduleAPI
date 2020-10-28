@@ -43,7 +43,6 @@ const TasksList = () => {
         }
         TaskService.updateTask(task.id,data)
         .then(res => {
-            console.log('ok');
         })
         .catch(err => {
             console.log(err);

@@ -31,7 +31,7 @@ const FetchTasks = (isLogged) => {
         if(isLogged && (tasks.length === 0 || isAdded) ) getData();
 
 
-    },[isLogged,isAdded]);
+    },[isLogged,isAdded,fetchTasks,tasks.length]);
 
 };
 

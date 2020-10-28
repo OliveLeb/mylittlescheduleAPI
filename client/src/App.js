@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import {Provider as AuthProvider} from './context/AuthContext';
-import { Provider as TaskProvider} from './context/TaskContext';
+import { Provider as AuthProvider } from './context/AuthContext';
+import { Provider as TaskProvider } from './context/TaskContext';
+import { Provider as AdminProvider } from './context/AdminContext'
 
 import Home from './components/Home';
 import Header from './components/common/Header';
@@ -13,6 +14,7 @@ import Register from './components/Register/Register';
 import LoggedRoute from './HOC/LoggedRoute';
 import Dashboard from './components/Dashboard';
 import AdminRoute from './HOC/AdminRoute';
+import Account from './components/Account';
 
 function App() {
   return (
@@ -34,12 +36,14 @@ function App() {
             <Route path='/register'>
               <Register />
             </Route>
-            {/*<LoggedRoute path='/dashboard'>
-              <Dashboard />
-              </LoggedRoute>*/}
-            <AdminRoute path='/dashboard'>
-              <Dashboard />
-            </AdminRoute>
+            <LoggedRoute path='/myaccount'>
+              <Account />
+            </LoggedRoute>
+            <AdminProvider>
+              <AdminRoute path='/dashboard'>
+                <Dashboard />
+              </AdminRoute>
+            </AdminProvider>
           </Switch>
           </div>
           <Footer />

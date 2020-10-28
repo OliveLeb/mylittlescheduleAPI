@@ -6,7 +6,7 @@ const login = (data) => {
 };
 
 const getUserData = () => {
-    return http.get('/user/loggedUser');
+    return http.get('/users/loggedUser');
 }
 
 const register = (data) => {

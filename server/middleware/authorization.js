@@ -17,6 +17,13 @@ const verifyToken = async (req,res,next) => {
         res.status(400).send('Invalid token.');
     }
     
+};
+
+const verifyScope = (req,res,next) => {
+
+    const user = req.user;
+    if(user.admin) return next();
+    return res.status(401).send('Vous n\'êtes pas autorisé à circuler ici !');
 }
 
-module.exports = verifyToken;
+module.exports = {verifyToken:verifyToken,verifyScope:verifyScope};

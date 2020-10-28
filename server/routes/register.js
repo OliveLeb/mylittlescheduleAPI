@@ -22,7 +22,7 @@ router.post('/', [validateUserRegister,verifyUniqueEmail], async (req,res) => {
             bcrypt.hash(user.password, salt)
             .then(hashedPwd => {
                 db.query(`INSERT INTO users(firstname, lastname, email, password, picture, created_at, updated_at, is_admin)
-                VALUES ('${user.firstname}','${user.lastname}','${user.email}','${hashedPwd}','${user.picture}','${date}','${date}','${user.is_admin}')`);
+                VALUES ($1,$2,'${user.email}','${hashedPwd}','${user.picture}','${date}','${date}','${user.is_admin}')`,[user.firstname,user.lastname]);
             });
         });     
 

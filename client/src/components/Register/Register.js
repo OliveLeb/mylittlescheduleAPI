@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Context as AuthContext} from '../../context/AuthContext';
 import ValidationRegisterForm from '../../hooks/ValidationRegisterForm';
 import DataService from '../../services/auth';

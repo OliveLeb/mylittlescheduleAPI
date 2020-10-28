@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Redirect, Route, useLocation } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import { Context } from '../context/AuthContext'
 
 
@@ -7,7 +7,7 @@ import { Context } from '../context/AuthContext'
 const LoggedRoute = ({children, ...rest}) => {
 
 
-    const { loggedUser, isLogged } = useContext(Context);
+    const { isLogged } = useContext(Context);
 
     return (
         <Route {...rest} render={({ location }) => 
