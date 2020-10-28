@@ -50,7 +50,6 @@ const handleError = (dispatch) => {
                 error:{[errType]:true}
             }                      
         });
-        //console.log(errType)
     };
 };
 

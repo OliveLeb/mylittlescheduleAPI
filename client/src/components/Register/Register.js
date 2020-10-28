@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
 import { Context as AuthContext} from '../../context/AuthContext';
 import ValidationRegisterForm from '../../hooks/ValidationRegisterForm';
 import DataService from '../../services/auth';
 import './Register.modules.css';
 
 const Register = () => {
+
+    const history = useHistory();
 
     const {newUser,newUserError,handleRegisterInput, resetErrorForm, handleErrors} = useContext(AuthContext);
 
@@ -15,6 +18,7 @@ const Register = () => {
             DataService.register(newUser)
             .then(res => {
                 resetErrorForm();
+                history.replace('/login');
             })
             .catch(err => {
                 if(err.response.data.type === 'email') {
@@ -24,7 +28,6 @@ const Register = () => {
                     handleErrors(error);
                 }
             });
-            
         };
     };
 
