@@ -7,6 +7,8 @@ const helmet = require('helmet');
 const dotenv = require('dotenv');
 dotenv.config();
 
+const PORT = process.env.PORT || 3001
+
 // IMPORTING ROUTES
 const routes = require('./routes');
 
@@ -28,6 +30,6 @@ routes(app);
 
 
 
-app.listen(process.env.SERVER_PORT, () => {
-    console.log('Server started, listenning at %s', process.env.SERVER_PORT);
+app.listen(PORT, () => {
+    console.log('Server started, listenning at %s', PORT);
 });
