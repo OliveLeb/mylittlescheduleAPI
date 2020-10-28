@@ -7,7 +7,8 @@ export const initialState = {
     },
     tasks: [],
     hasError: false,
-    isAdded: false
+    isAdded: false,
+    isCompletedVisible: true
 }
 
 const taskReducer = (state,action) => {
@@ -60,6 +61,11 @@ const taskReducer = (state,action) => {
                 ...state,
                 tasks: [...action.payload]
             };
+        case 'TOGGLE_VISIBLE':
+            return {
+                ...state,
+                isCompletedVisible: !state.isCompletedVisible
+            }
         default:
             return state
     }

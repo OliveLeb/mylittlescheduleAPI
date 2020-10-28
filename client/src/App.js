@@ -5,16 +5,18 @@ import { Provider as AuthProvider } from './context/AuthContext';
 import { Provider as TaskProvider } from './context/TaskContext';
 import { Provider as AdminProvider } from './context/AdminContext'
 
-import Home from './components/Home';
+import Home from './pages/Home';
+import Tasks from './pages/Tasks';
 import Header from './components/common/Header';
 import Login from './components/Login';
 import Footer from './components/common/Footer';
-import TasksList from './components/TasksList';
 import Register from './components/Register/Register';
-import LoggedRoute from './HOC/LoggedRoute';
 import Dashboard from './components/Dashboard';
-import AdminRoute from './HOC/AdminRoute';
 import Account from './components/Account';
+import LoggedRoute from './HOC/LoggedRoute';
+import AdminRoute from './HOC/AdminRoute';
+
+
 
 function App() {
   return (
@@ -28,7 +30,7 @@ function App() {
                 <Home />
             </Route>
             <Route path='/mytasks'>
-                <TasksList />
+                <Tasks />
             </Route>
             <Route path='/login'>
                 <Login />

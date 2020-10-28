@@ -51,14 +51,27 @@ const changeIsDone = (dispatch) => {
     }
 };
 
-const deleteTaskSuccess = (dispatch) => {
-    return (newTasks) => {
-        dispatch({
+const deleteTask = (dispatch) => {
+    return async (id, TaskService,tasks) => {
+         try {
+            const res = isNaN(id) ? await TaskService.deleteTasksDone() : await TaskService.deleteTask(id);
+            const remainingResult = tasks.filter((result) => !res.data.idDeleted.some(data => data.id === result.id));
+            dispatch({
             type:'DELETE_TASK',
-            payload: newTasks
+            payload: remainingResult
         });
+        }
+        catch(error) {
+            console.log(error);
+        }       
     };
 };
 
-const actions = {fetchTasks,reset,handleTaskInput,addTaskSuccess,deleteTaskSuccess, changeIsDone};
+const toggleCompletedVisible = (dispatch) => {
+    return () => {
+        dispatch({type:'TOGGLE_VISIBLE'})
+    };
+};
+
+const actions = {fetchTasks,reset,handleTaskInput,addTaskSuccess,deleteTask, changeIsDone, toggleCompletedVisible};
 export default actions;
