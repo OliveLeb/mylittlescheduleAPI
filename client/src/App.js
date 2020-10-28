@@ -7,12 +7,14 @@ import { Provider as AdminProvider } from './context/AdminContext'
 
 import Home from './pages/Home';
 import Tasks from './pages/Tasks';
+import Account from './pages/Account';
+
 import Header from './components/common/Header';
 import Login from './components/Login';
 import Footer from './components/common/Footer';
 import Register from './components/Register/Register';
 import Dashboard from './components/Dashboard';
-import Account from './components/Account';
+
 import LoggedRoute from './HOC/LoggedRoute';
 import AdminRoute from './HOC/AdminRoute';
 

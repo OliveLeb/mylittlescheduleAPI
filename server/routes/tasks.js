@@ -1,15 +1,11 @@
 'use strict';
 
-//const Router = require('express-promise-router');
 const moment = require('moment');
 const db = require('../db');
 const validateTask = require('../schema/tasks');
 const verifyToken  = require('../middleware/authorization').verifyToken;
 const express = require('express');
 const router = express.Router();
-
-//const router = new Router();
-
 
 router.use(verifyToken);
 

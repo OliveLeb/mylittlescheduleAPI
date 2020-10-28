@@ -1,6 +1,5 @@
 'use strict';
 
-//const Router = require('express-promise-router');
 const express = require('express');
 const moment = require('moment');
 const db = require('../db');
@@ -8,7 +7,6 @@ const verifyScope  = require('../middleware/authorization').verifyScope;
 const verifyToken = require('../middleware/authorization').verifyToken;
 
 const router = express.Router();
-//const router = new Router();
 
 router.get('/', [verifyToken,verifyScope],async (req,res)=> {
     const {rows} = await db.query('SELECT id,firstname,lastname,email,picture,is_admin FROM users ORDER BY id ASC');

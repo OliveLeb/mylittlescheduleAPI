@@ -6,10 +6,14 @@ const Account = () => {
     const { loggedUser } = useContext(AuthContext);
 
     return (
-        <div>
+        <section>
             <h2>Mon Compte</h2>
             <h3>Bonjour {loggedUser.firstname}</h3>
-        </div>
+            <ul>
+                <li>{loggedUser.firstname} {loggedUser.lastname}</li>
+                <li>{loggedUser.email}</li>
+            </ul>
+        </section>
     );
 };
 

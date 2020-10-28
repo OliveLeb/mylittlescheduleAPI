@@ -1,6 +1,5 @@
 'use strict';
 
-//const Router = require('express-promise-router');
 const express = require('express');
 const db = require('../db');
 const moment = require('moment');
@@ -10,7 +9,6 @@ const validateUserRegister = require('../schema/users').validateUserRegister;
 const verifyUniqueEmail = require('../utils/users').verifyUniqueEmail;
 
 const router = express.Router();
-//const router = new Router();
 
 router.post('/', [validateUserRegister,verifyUniqueEmail], async (req,res) => {
 
