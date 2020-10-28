@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines":{
+    "node": "12.14.1",
+    "npm": "6.14.2",
+    "yarn": "1.22.4"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "heroku-postbuild": "cd .. && cd client && yarn install && yarn run build"
+    "heroku-postbuild": "cd .. && cd client && yarn install && yarn run build",
+    "start": "node index.js"    
   },
   "keywords": [],
   "author": "",

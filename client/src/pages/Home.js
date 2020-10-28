@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Context as AuthContext} from '../context/AuthContext';
 import { FaReact, FaNodeJs } from 'react-icons/fa';
 import { SiPostgresql } from 'react-icons/si';
+import { DiHeroku } from 'react-icons/di';
 
 const Home = () => {
 
@@ -31,6 +32,7 @@ const Home = () => {
                     <li>PostgreSQL <SiPostgresql style={{color:'#326691',fontSize:'1.5rem'}} /></li>
                     <li>Node.js <FaNodeJs style={{color:'#689f63',fontSize:'1.5rem'}} /></li>                                
                 </ul>
+                <p>Déployé sur Heroku <DiHeroku style={{color:'#fff',backgroundColor:'#8666ac',borderRadius:'2px',fontSize:'1.5rem'}}/> </p>
             </section>
         </>
     )
