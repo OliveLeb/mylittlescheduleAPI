@@ -10,8 +10,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "cd ../client && yarn install && yarn run build",
-    "start": "node index.js"    
+    "start": "node index.js",
+    "heroku-postbuild": "cd ../client && yarn install && yarn run build"   
   },
   "keywords": [],
   "author": "",
