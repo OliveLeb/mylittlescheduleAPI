@@ -17,8 +17,15 @@ app.use(cors());
 app.use(compression());
 app.use(helmet());
 
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+};
+
 // ROUTES
 routes(app);
+
+
 
 
 app.listen(process.env.SERVER_PORT, () => {
