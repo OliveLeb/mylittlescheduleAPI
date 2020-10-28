@@ -48,12 +48,12 @@ const Login = () => {
             <div className='form-group'>
                 <label htmlFor='email'>Email</label>
                 <input type='email' className='form-control' name='email' value={user.email} onChange={handleInput} required/>
-                {hasError.email ? <p className='text-danger'>{errorMessage}</p> : null}
+                {hasError.email && <p className='invalid'>{errorMessage}</p> }
             </div>
             <div className='form-group'>
                 <label htmlFor='password'>Mot de passe</label>
                 <input type='password' className='form-control' name='password' value={user.password} onChange={handleInput} required/>
-                {hasError.password ? <p className='text-danger'>{errorMessage}</p> : null}
+                {hasError.password && <p className='invalid'>{errorMessage}</p> }
             </div>
             <button type='submit'>Se connecter</button>
         </form>

@@ -16,7 +16,14 @@ const Register = () => {
             .then(res => {
                 resetErrorForm();
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                if(err.response.data.type === 'email') {
+                    const error = {
+                        emailError:err.response.data.message,
+                    };
+                    handleErrors(error);
+                }
+            });
             
         };
     };

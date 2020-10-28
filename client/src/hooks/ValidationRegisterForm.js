@@ -1,11 +1,6 @@
-//import { useContext } from 'react';
-//import { Context as AuthContext } from '../context/AuthContext';
 
 const ValidationRegisterForm = ( newUser, handleErrors ) => {
     
-    //const { newUser, handleErrors } = useContext(AuthContext);
-    //console.log(newUser);
-    //console.log('first',newUser.firstname);
     let isError = false;
 
     const errors = {

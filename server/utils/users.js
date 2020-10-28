@@ -10,7 +10,7 @@ const verifyUniqueEmail = async (req,res,next) => {
 
     const { rows } = await db.query(`SELECT id FROM users WHERE email='${user.email}'`);
 
-    if(rows.length !== 0) return res.status(401).send('Email already used.');
+    if(rows.length !== 0) return res.status(401).send({type:'email',message:'Cet email est déjà utilisé.'});
 
     return next();
 };
