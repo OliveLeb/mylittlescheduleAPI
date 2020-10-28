@@ -22,7 +22,8 @@ router.post('/',[validateUserLogin,verifyCredentials], async (req,res) => {
             firstname:user.firstname,
             lastname:user.lastname,
             email: user.email,
-            picture: user.picture
+            picture: user.picture,
+            is_admin: user.is_admin
         },
         token: token
     });

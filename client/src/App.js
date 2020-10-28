@@ -10,6 +10,9 @@ import Login from './components/Login';
 import Footer from './components/common/Footer';
 import TasksList from './components/TasksList';
 import Register from './components/Register/Register';
+import LoggedRoute from './HOC/LoggedRoute';
+import Dashboard from './components/Dashboard';
+import AdminRoute from './HOC/AdminRoute';
 
 function App() {
   return (
@@ -31,6 +34,12 @@ function App() {
             <Route path='/register'>
               <Register />
             </Route>
+            {/*<LoggedRoute path='/dashboard'>
+              <Dashboard />
+              </LoggedRoute>*/}
+            <AdminRoute path='/dashboard'>
+              <Dashboard />
+            </AdminRoute>
           </Switch>
           </div>
           <Footer />

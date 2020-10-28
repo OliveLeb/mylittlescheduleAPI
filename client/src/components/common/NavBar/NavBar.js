@@ -4,7 +4,7 @@ import { FiLogIn, FiLogOut } from 'react-icons/fi';
 import { FaTimes, FaBars } from 'react-icons/fa';
 import './NavBar.modules.css';
 
-const NavBar = ({isLogged, logOut}) => {
+const NavBar = ({isLogged, logOut, loggedUser}) => {
 
     const [isMenuToggled,setIsMenuToggled] = useState(false);
 
@@ -30,11 +30,13 @@ const NavBar = ({isLogged, logOut}) => {
                     }
                     </li>
                     <li>
-                    {isLogged 
+                    {isLogged && loggedUser.is_admin
+                    ? <NavLink to='/dashboard'>Dashboard</NavLink>
+                    : isLogged 
                     ? <NavLink to='#'>Mon Compte</NavLink>
-                    : <NavLink to='/register'>Sign In</NavLink>
+                    : <NavLink to='/register'>Sign In</NavLink>                   
                     }
-                    </li>               
+                    </li>             
             </ul>
         </nav>
     );

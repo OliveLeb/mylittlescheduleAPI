@@ -7,7 +7,7 @@ import NavBar from './NavBar/NavBar';
 
 const Header = () => {
 
-    const {isLogged, disconnect, connect} = useContext(AuthContext);
+    const {isLogged, disconnect, connect, loggedUser} = useContext(AuthContext);
     const {reset} = useContext(TaskContext);
 
     FetchTasks(isLogged);
@@ -33,7 +33,7 @@ const Header = () => {
 
     return (
         <header>           
-                <NavBar isLogged={isLogged} logOut={logOut}/>            
+                <NavBar isLogged={isLogged} logOut={logOut} loggedUser={loggedUser}/>            
         </header>
     )
 }

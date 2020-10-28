@@ -7,7 +7,8 @@ export const initialState = {
         firstname: '',
         lastname: '',
         email: '',
-        picture: ''
+        picture: '',
+        is_admin:''
     },
     newUser: {
         firstname: '',

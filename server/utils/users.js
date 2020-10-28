@@ -19,7 +19,7 @@ const verifyCredentials = async (req,res,next) => {
 
     const user = req.user;
 
-    const { rows } = await db.query(`SELECT id,firstname,lastname,email,picture,password FROM users WHERE email='${user.email}'`);
+    const { rows } = await db.query(`SELECT id,firstname,lastname,email,picture,password,is_admin FROM users WHERE email='${user.email}'`);
     if(rows.length ===  0) return res.status(401).send({type:'email',message:'No account with this mail found.'});
 
    
