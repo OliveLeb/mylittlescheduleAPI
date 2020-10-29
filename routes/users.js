@@ -13,7 +13,7 @@ router.get('/', [verifyToken,verifyScope],async (req,res)=> {
     res.send(rows);
 });
 
-router.get('/loggedUser',verifyToken, async(req,res) => {
+router.get('/loggedUser',verifyToken, async (req,res) => {
     const id = req.user.id;
     const {rows} = await db.query(`SELECT firstname,lastname,email, picture, is_admin FROM users WHERE id=$1`,[id]);
     res.send(rows);

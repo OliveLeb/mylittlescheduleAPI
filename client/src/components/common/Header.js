@@ -20,7 +20,7 @@ const Header = () => {
                 connect(res.data[0])
             })
             .catch(err=>{
-                console.log(err);
+                console.log(err.response);
             });
         };
     },[token]);

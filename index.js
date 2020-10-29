@@ -5,6 +5,7 @@ const cors = require('cors');
 const compression = require('compression'); // compress server's responses
 const helmet = require('helmet');
 const dotenv = require('dotenv');
+const path = require('path');
 dotenv.config();
 
 const PORT = process.env.PORT || 3001
