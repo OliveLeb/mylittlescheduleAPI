@@ -20,6 +20,8 @@ app.use(cors());
 app.use(compression());
 app.use(helmet());
 
+// ROUTES
+routes(app);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname,'client/build')));
@@ -28,11 +30,6 @@ if (process.env.NODE_ENV === 'production') {
 	res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 };
-
-// ROUTES
-routes(app);
-
-
 
 
 app.listen(PORT, () => {
