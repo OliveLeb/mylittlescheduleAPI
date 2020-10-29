@@ -20,7 +20,7 @@ router.get('/mytasks', async (req, res) => {
 
     const user = req.user;
     const { rows } = await db.query(`SELECT id,user_id,task, is_done, day, hour, created_at, updated_at 
-    FROM tasks WHERE user_id=${user.id} ORDER BY id ASC`);
+    FROM tasks WHERE user_id=$1 ORDER BY id ASC`,[user.id]);
     res.send(rows);
 });
 
