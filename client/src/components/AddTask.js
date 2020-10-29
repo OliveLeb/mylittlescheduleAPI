@@ -1,16 +1,16 @@
 import React, { useContext } from 'react'
 import { Context as TaskContext } from '../context/TaskContext'
-import { Context as AuthContext } from '../context/AuthContext';
+//import { Context as AuthContext } from '../context/AuthContext';
 import TaskService from '../services/userTasks';
 
 const AddTask = () => {
 
     const {newTask,handleTaskInput,addTaskSuccess} = useContext(TaskContext);
-    const { isLogged } = useContext(AuthContext);
+  //  const { isLogged } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(isLogged){
+       // if(isLogged){
             TaskService.createTask(newTask)
             .then(res=>{
                 addTaskSuccess(newTask);
@@ -18,9 +18,9 @@ const AddTask = () => {
             .catch(err=>{
                 console.log(err);
             });
-        }else{
+     /*   }else{
             addTaskSuccess(newTask);
-        }
+        }*/
         
     };
 
