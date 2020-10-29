@@ -37,7 +37,8 @@ const handleTaskInput = (dispatch) => {
 const addTaskSuccess = (dispatch) => {
     return (newTask) => {
         dispatch({
-            type:'ADD_TASK_SUCCESS'
+            type:'ADD_TASK_SUCCESS',
+            payload: newTask
         });
     };
 };

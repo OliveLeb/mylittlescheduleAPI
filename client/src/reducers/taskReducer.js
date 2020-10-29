@@ -48,6 +48,7 @@ const taskReducer = (state,action) => {
                     day:null,
                     hour:null
                 },
+                tasks: [...state.tasks, action.payload],
                 hasError: false,
                 isAdded: true
             };
