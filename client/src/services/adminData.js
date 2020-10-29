@@ -1,7 +1,7 @@
 import http from '../http.common';
 
 const getUsers = () => {
-    return http.get('users');
+    return http.get('/users');
 };
 
 const AdminService = { getUsers };
