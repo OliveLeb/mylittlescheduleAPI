@@ -12,21 +12,27 @@ const router = express.Router();
 
 router.post('/', [validateUserRegister,verifyUniqueEmail], async (req,res) => {
 
-    const user = req.user;
-    const date = moment().format('YYYY-MM-D H:mm:ss');
-    
-     await bcrypt.genSalt(10)
-        .then(salt => {
-            bcrypt.hash(user.password, salt)
-            .then(hashedPwd => {
-                db.query(`INSERT INTO users(firstname, lastname, email, password, picture, created_at, updated_at, is_admin)
-                VALUES ($1,$2,'${user.email}','${hashedPwd}','${user.picture}','${date}','${date}','${user.is_admin}')`,[user.firstname,user.lastname]);
-            });
-        });     
+    try {
+        const user = req.user;
+        const date = moment().format('YYYY-MM-D H:mm:ss');
+        
+        await bcrypt.genSalt(10)
+            .then(salt => {
+                bcrypt.hash(user.password, salt)
+                .then(hashedPwd => {
+                    db.query(`INSERT INTO users(firstname, lastname, email, password, picture, created_at, updated_at, is_admin)
+                    VALUES ($1,$2,'${user.email}','${hashedPwd}','${user.picture}','${date}','${date}','${user.is_admin}')`,[user.firstname,user.lastname]);
+                });
+            });     
 
         const token = await createToken(user);
 
-        res.header('auth-token', token).send(token);
+        res.header('auth-token', token).send(token);        
+    }
+    catch(err) {
+        console.log(err.message);
+    }
+    
 
 });
 
