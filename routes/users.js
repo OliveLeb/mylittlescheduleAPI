@@ -39,9 +39,9 @@ router.put('/:id', async (req,res) => {
         const body = req.body;
         const date = moment().format('YYYY-MM-D H:mm:ss');
 
-        await db.query(`UPDATE users SET firstname='${body.firstname}', lastname='${body.lastname}',
+        await db.query(`UPDATE users SET firstname=$1, lastname=$2,
         email='${body.email}', password='${body.password}',picture='${body.picture}',is_admin='${body.is_admin}',updated_at='${date}' 
-        WHERE id=${id}`);
+        WHERE id=${id}`,[body.firstname,body.lastname]);
 
         res.send(body);
     }
