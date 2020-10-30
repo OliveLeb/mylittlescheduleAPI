@@ -3,6 +3,7 @@ import { Context as TaskContext} from '../context/TaskContext';
 import { Context as AuthContext } from '../context/AuthContext';
 import TaskService from '../services/userTasks';
 import TasksListItem from './TasksListItem/TasksListItem';
+const _ = require('lodash');
 
 const TasksList = () => {
 
@@ -45,11 +46,11 @@ const TasksList = () => {
             <ul>
             {isCompletedVisible
                 ? tasks.map((task,index) => (
-                    <TasksListItem toggleIsDone={toggleIsDone} deleteTask={()=>deleteTask(task.id,TaskService,tasks,isLogged)} task={task} key={index} index={index}/>
+                    <TasksListItem toggleIsDone={toggleIsDone} deleteTask={()=>deleteTask(task.id,TaskService,tasks,isLogged,_)} task={task} key={index} />
                 ))
 
                 : tasks.filter(task=>task.is_done === false).map((task,index)=> (
-                    <TasksListItem toggleIsDone={toggleIsDone} deleteTask={()=>deleteTask(task.id,TaskService,tasks,isLogged)} task={task} key={index} index={index}/>
+                    <TasksListItem toggleIsDone={toggleIsDone} deleteTask={()=>deleteTask(task.id,TaskService,tasks,isLogged,_)} task={task} key={index} />
                 ))
             }
             </ul>   

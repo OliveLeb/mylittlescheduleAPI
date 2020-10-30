@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Context } from '../../context/AuthContext';
 import styles from './TasksListItem.module.css';
+const _ = require('lodash');
 
 const TasksListItem = ({toggleIsDone, deleteTask,task}) => {
 
@@ -16,7 +17,7 @@ const TasksListItem = ({toggleIsDone, deleteTask,task}) => {
 
                         <label htmlFor={task.id} className={task.is_done ? styles.complete : undefined}>{task.task}</label>
                     
-                        <button type='button' className='btn btn-danger' onClick={()=>deleteTask(task.id,null,null,isLogged,null)}>x</button>
+                        <button type='button' className='btn btn-danger' onClick={()=>deleteTask(task.id,null,null,isLogged,_)}>x</button>
                     </li>
     
         
