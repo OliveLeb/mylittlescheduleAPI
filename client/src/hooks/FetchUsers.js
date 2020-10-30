@@ -12,7 +12,6 @@ const FetchUsers = () => {
 
             AdminService.getUsers()
             .then(res=> {
-                //console.log(res)
                 fetchUsers(res);
             })
             .catch(err => {

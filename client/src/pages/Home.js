@@ -37,10 +37,11 @@ const Home = () => {
             </section>
             <section>
                 <p>
-                <span style={{textTransform:'uppercase'}}>In progress</span>
-                L'application n'est pour l'instant pas entièrement sécurisé (token dans le localStorage, pas d'activation par envoie d'email..).
+                <span style={{textTransform:'uppercase'}}>In progress...</span>
                 <br/>
-                Je vous invite donc, si vous le souhaitez, à créer un compte en utilisant de fausses donées pour tester TOUTES les fonctionnalités.
+                L'application n'est pour l'instant pas entièrement sécurisée (token dans le localStorage, pas d'activation par envoie d'email..).
+                <br/>
+                Je vous invite donc, si vous le souhaitez, à créer un compte en utilisant de fausses données pour tester TOUTES les fonctionnalités.
                 <br/>
                 &#x1F600;&#x1F600;
                 </p>
