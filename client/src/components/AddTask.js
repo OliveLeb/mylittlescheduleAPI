@@ -1,7 +1,8 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import { Context as TaskContext } from '../context/TaskContext'
 import { Context as AuthContext } from '../context/AuthContext';
 import TaskService from '../services/userTasks';
+const _ = require('lodash');
 
 const AddTask = () => {
 
@@ -12,14 +13,18 @@ const AddTask = () => {
         e.preventDefault();
         if(isLogged){
             TaskService.createTask(newTask)
-            .then(res=>{
+            .then(()=>{
                 addTaskSuccess(newTask);
             })
             .catch(err=>{
                 console.log(err);
             });
        }else{
-            addTaskSuccess(newTask);
+           const data = {
+               ...newTask,
+               id: _.uniqueId(),            
+           }
+            addTaskSuccess(data);
         }
         
     };
