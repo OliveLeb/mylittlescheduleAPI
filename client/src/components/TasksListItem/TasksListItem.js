@@ -16,7 +16,7 @@ const TasksListItem = ({toggleIsDone, deleteTask,task}) => {
 
                         <label htmlFor={task.id} className={task.is_done ? styles.complete : undefined}>{task.task}</label>
                     
-                        <button type='button' className='btn btn-danger' onClick={()=>deleteTask(task.id)}>x</button>
+                        <button type='button' className='btn btn-danger' onClick={()=>deleteTask(task.id,null,null,isLogged)}>x</button>
                     </li>
     
         

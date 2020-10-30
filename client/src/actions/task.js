@@ -57,10 +57,12 @@ const changeIsDone = (dispatch) => {
 };
 
 const deleteTask = (dispatch) => {
-    return async (id, TaskService,tasks) => {
+    return async (id, TaskService,tasks,isLogged) => {
          try {
-            const res = isNaN(id) ? await TaskService.deleteTasksDone() : await TaskService.deleteTask(id);
-            const remainingResult = tasks.filter((result) => !res.data.idDeleted.some(data => data.id === result.id));
+            const res = isNaN(id) && isLogged ? await TaskService.deleteTasksDone() : !isNaN(id) && isLogged ? await TaskService.deleteTask(id) : null;
+            const remainingResult = isLogged 
+            ? tasks.filter((result) => !res.data.idDeleted.some(data => data.id === result.id)) 
+            : tasks.filter((result) => id !== result.id);
             dispatch({
             type:'DELETE_TASK',
             payload: remainingResult
@@ -70,6 +72,7 @@ const deleteTask = (dispatch) => {
             console.log(error);
         }       
     };
+
 };
 
 const toggleCompletedVisible = (dispatch) => {
