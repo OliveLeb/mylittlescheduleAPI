@@ -16,6 +16,7 @@ const Home = () => {
                 <p>
                     Connectez vous pour retrouver votre TO DO LIST à tout moment !
                 </p>
+                <p>Si vous ne vous connectez pas, vous ne pourrez pas retrouver vos tâches en partant.</p>
                 <div>
                     Créez un compte dès maintenant ou essayez avec :
                     <ul>
@@ -33,6 +34,16 @@ const Home = () => {
                     <li>Node.js <FaNodeJs style={{color:'#689f63',fontSize:'1.5rem'}} /></li>                                
                 </ul>
                 <p>Déployé sur Heroku <DiHeroku style={{color:'#fff',backgroundColor:'#8666ac',borderRadius:'2px',fontSize:'1.5rem'}}/> </p>
+            </section>
+            <section>
+                <p>
+                <span style={{textTransform:'uppercase'}}>In progress</span>
+                L'application n'est pour l'instant pas entièrement sécurisé (token dans le localStorage, pas d'activation par envoie d'email..).
+                <br/>
+                Je vous invite donc, si vous le souhaitez, à créer un compte en utilisant de fausses donées pour tester TOUTES les fonctionnalités.
+                <br/>
+                &#x1F600;&#x1F600;
+                </p>
             </section>
         </>
     )
