@@ -40,7 +40,7 @@ const Login = () => {
                     }
                 }
             });
-    }
+    };
 
     return (
 

@@ -8,28 +8,19 @@ const FetchTasks = (isLogged) => {
     
     useEffect(() => {
 
-        const getData = async () => {
+        const getData =  () => {
 
-            try {
-                const res = await TaskService.getTasks();
-                fetchTasks(res);
-            }
-            catch(error) {
-                console.log('error : ',error)
-            };
-           /* TaskService.getTasks()
+            TaskService.getTasks()
             .then(res=>{
                 fetchTasks(res);
             })
             .catch(err=>{
                 console.log(err);
-            });*/
-
+            });
 
         };
 
         if(isLogged && (tasks.length === 0 || isAdded) ) getData();
-
 
     },[isLogged,isAdded,fetchTasks,tasks.length]);
 
