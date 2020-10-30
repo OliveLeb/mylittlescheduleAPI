@@ -59,10 +59,15 @@ const changeIsDone = (dispatch) => {
 const deleteTask = (dispatch) => {
     return async (id, TaskService,tasks,isLogged,_) => {
          try {
-            const res = isNaN(id) && isLogged ? await TaskService.deleteTasksDone() : !isNaN(id) && isLogged ? await TaskService.deleteTask(id) : null;
+             console.log(id);
+            const res = (!id && isLogged) ? await TaskService.deleteTasksDone()
+            : (id && isLogged) ? await TaskService.deleteTask(id) 
+            : null;
+
             const remainingResult = isLogged 
             ? tasks.filter((result) => !res.data.idDeleted.some(data => data.id === result.id)) 
-            : _.remove(tasks, (task)=>  !task.is_done )
+            : _.remove(tasks, (task)=>  !task.is_done );
+            
             dispatch({
             type:'DELETE_TASK',
             payload: remainingResult
