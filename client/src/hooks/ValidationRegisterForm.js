@@ -1,5 +1,5 @@
 
-const ValidationRegisterForm = ( newUser, handleErrors ) => {
+const ValidationRegisterForm = ( newUser, handleErrorRegister ) => {
     
     let isError = false;
 
@@ -34,7 +34,7 @@ const ValidationRegisterForm = ( newUser, handleErrors ) => {
             errors.repeat_password = 'Les mots de passe ne correspondent pas.';
         }
 
-        handleErrors(errors);
+        handleErrorRegister(errors);
 
         return isError;
 }

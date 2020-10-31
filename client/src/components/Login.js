@@ -11,7 +11,7 @@ const Login = () => {
     const { from } = location.state || { from: { pathname: "/" } };
 
 
-    const {user,hasError,errorMessage,handleInput,connect,handleError, resetError} = useContext(AuthContext);
+    const {user,hasError,errorMessage,handleInput,connect,handleErrorLogin, resetError} = useContext(AuthContext);
 
     
     const handleSubmit = (e) => {
@@ -30,10 +30,10 @@ const Login = () => {
                    const error = JSON.parse(err.request.response);
                     switch(error.type){
                         case 'password':
-                            handleError(error.type,'Mot de passe invalide.');
+                            handleErrorLogin(error.type,'Mot de passe invalide.');
                             break;
                         case 'email':
-                            handleError(error.type,'Il n\'existe pas de compte avec cet email.');
+                            handleErrorLogin(error.type,'Il n\'existe pas de compte avec cet email.');
                             break;
                         default:
                             console.log(err);

@@ -41,7 +41,7 @@ const resetError = (dispatch)=> {
     };
 };
 
-const handleError = (dispatch) => {
+const handleErrorLogin = (dispatch) => {
     return (errType,message) => {
         dispatch({
             type:'LOGIN_FAILURE',
@@ -65,7 +65,7 @@ const handleRegisterInput = (dispatch) => {
     };
 };
 
-const handleErrors = (dispatch) => {
+const handleErrorRegister = (dispatch) => {
     return (errors) => {
         dispatch({
             type:'ERROR_FORM',
@@ -81,6 +81,6 @@ const resetErrorForm = (dispatch) => {
 };
 
 
-const actions = { connect, handleInput, handleSubmit, disconnect, handleError, resetError, handleRegisterInput, handleErrors, resetErrorForm}
+const actions = { connect, handleInput, handleSubmit, disconnect, handleErrorLogin, resetError, handleRegisterInput, handleErrorRegister, resetErrorForm}
 
 export default actions;

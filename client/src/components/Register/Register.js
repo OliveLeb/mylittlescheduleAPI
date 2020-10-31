@@ -9,11 +9,11 @@ const Register = () => {
 
     const history = useHistory();
 
-    const {newUser,newUserError,handleRegisterInput, resetErrorForm, handleErrors} = useContext(AuthContext);
+    const {newUser,newUserError,handleRegisterInput, resetErrorForm, handleErrorRegister} = useContext(AuthContext);
 
     const submitRegistration = (e) => {
         e.preventDefault();
-        const err = ValidationRegisterForm(newUser,handleErrors);
+        const err = ValidationRegisterForm(newUser,handleErrorRegister);
         if(!err){
             DataService.register(newUser)
             .then(res => {
@@ -25,7 +25,7 @@ const Register = () => {
                     const error = {
                         emailError:err.response.data.message,
                     };
-                    handleErrors(error);
+                    handleErrorRegister(error);
                 }
             });
         };
