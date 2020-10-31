@@ -57,7 +57,10 @@ const handleRegisterInput = (dispatch) => {
     return (e) => {
         dispatch({
             type:'ADD_NEW_USER',
-            payload:{[e.target.name]:e.target.value}
+            payload:{
+                newUser : {[e.target.name]:e.target.value},
+                newUserError : {[e.target.name]:''}
+            }
         });
     };
 };

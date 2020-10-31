@@ -13,7 +13,7 @@ import Header from './components/common/Header';
 import Login from './components/Login';
 import Footer from './components/common/Footer';
 import Register from './components/Register/Register';
-import Dashboard from './components/Dashboard';
+import AdminPanel from './components/AdminPanel';
 
 import LoggedRoute from './HOC/LoggedRoute';
 import AdminRoute from './HOC/AdminRoute';
@@ -45,7 +45,7 @@ function App() {
             </LoggedRoute>
             <AdminProvider>
               <AdminRoute path='/dashboard'>
-                <Dashboard />
+                <AdminPanel />
               </AdminRoute>
             </AdminProvider>
           </Switch>

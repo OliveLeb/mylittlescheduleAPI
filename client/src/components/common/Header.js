@@ -9,9 +9,9 @@ import NavBar from './NavBar/NavBar';
 const Header = () => {
 
     const {isLogged, disconnect, connect, loggedUser} = useContext(AuthContext);
-    const {reset,fetch,loading,fetchError} = useContext(TaskContext);
+    const {tasks,reset,fetch,loading,fetchError} = useContext(TaskContext);
 
-    useFetch(TaskService,fetch,loading,fetchError, isLogged);
+    useFetch(TaskService,fetch,loading,fetchError,isLogged,tasks);
 
     const token = localStorage.getItem('x-access-token');
     useEffect(()=>{

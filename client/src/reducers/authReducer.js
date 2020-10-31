@@ -20,12 +20,12 @@ export const initialState = {
         is_admin:false
     },
     newUserError: {
-        firstnameError:'',
-        lastnameError:'',
-        emailError:'',
-        pictureError:'',
-        passwordError:'',
-        repeat_passwordError:''
+        firstname:'',
+        lastname:'',
+        email:'',
+        picture:'',
+        password:'',
+        repeat_password:''
     },
     isLogged: false,
     hasError: {
@@ -59,35 +59,17 @@ const authReducer = (state, action) => {
         case 'ADD_NEW_USER':
             return {
                 ...state,
-                newUser: {...state.newUser, ...action.payload}
+                newUser: {...state.newUser, ...action.payload.newUser},
+                newUserError: {...state.newUserError, ...action.payload.newUserError}
             };
         case 'SUBMIT_REGISTER':
             return {
                 ...state,
-                newUser:{
-                    firstname: '',
-                    lastname: '',
-                    email: '',
-                    picture: 'null',
-                    password: '',
-                    repeat_password: '',
-                    is_admin:false
-                }
+                newUser: initialState.newUser
             }; 
         case 'LOG_OUT':
             return {
-                ...state,
-                user : {
-                    email: '',
-                    password: ''
-                },
-                loggedUser: {
-                    firstname: '',
-                    lastname: '',
-                    email: '',
-                    picture: ''
-                },
-                isLogged: false
+                ...initialState
             };
         case 'RESET_ERROR':
             return {
@@ -106,23 +88,8 @@ const authReducer = (state, action) => {
         case 'RESET_ERROR_FORM':
             return {
                 ...state,
-                newUserError: {
-                    firstnameError:'',
-                    lastnameError:'',
-                    emailError:'',
-                    pictureError:'',
-                    passwordError:'',
-                    repeat_passwordError:''
-                },
-                newUser: {
-                    firstname: '',
-                    lastname: '',
-                    email: '',
-                    picture: 'null',
-                    password: '',
-                    repeat_password: '',
-                    is_admin:false
-                }
+                newUserError: initialState.newUserError,
+                newUser: initialState.newUser
             };
         default :
             return state;    
