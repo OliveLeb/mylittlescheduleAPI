@@ -6,7 +6,6 @@ export const useFetch = (axiosService, fetch, loading, fetchError, isLogged) => 
     useEffect(() => {
 
         const fetchData = async () => {
-            console.log(cache);
             loading();
 
             if(cache.current[axiosService]) {
@@ -19,7 +18,6 @@ export const useFetch = (axiosService, fetch, loading, fetchError, isLogged) => 
                     const result = await axiosService.get();
                     cache.current[axiosService] = result;
                     fetch(result);
-                    console.log(result);
                 }
                 catch(error) {
                     fetchError();
