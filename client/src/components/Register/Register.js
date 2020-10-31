@@ -34,12 +34,12 @@ const Register = () => {
     return (
         <form onSubmit={submitRegistration}>
             <div className='row mt-4'>
-            <div className='col form-group'>
+            <div className='col form-group mb-0'>
                 <label htmlFor='firstname'>Prénom</label>
                 <input type='text' name='firstname' className='form-control'required onChange={handleRegisterInput} value={newUser.firstname || ''}/>
                 <p className='invalid'>{newUserError.firstnameError}</p>
             </div>
-            <div className='col form-group'>
+            <div className='col form-group mb-0'>
                 <label htmlFor='lastname'>Nom de famille</label>
                 <input type='text' name='lastname' className='form-control'required onChange={handleRegisterInput} value={newUser.lastname || ''}/>
                 <p className='invalid'>{newUserError.lastnameError}</p>
@@ -53,6 +53,7 @@ const Register = () => {
             <div className='form-group my-4'>
                 <label htmlFor='password'>Mot de passe</label>
                 <input type='password' name='password' className='form-control'required onChange={handleRegisterInput} value={newUser.password || ''}/>
+                <p className='noticePwd'>Entre 6 et 16 caractères, au moins 1 minuscule, 1 majuscule et 1 chiffre.</p>
                 <p className='invalid'>{newUserError.passwordError}</p>
             </div>
             <div className='form-group my-4'>

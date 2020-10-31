@@ -1,6 +1,13 @@
 .invalid {
-  height: 10px;
+  height: 15px;
   color: red;
   font-style: italic;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+}
+
+.noticePwd {
+  height: 15px;
+  color: #1665af;
+  font-style: italic;
+  font-size: 0.7rem;
 }

@@ -1,14 +1,25 @@
 export const initialState = {
-    users: []
+    users: [],
+    isLoading: false,
+    hasError: false,
 };
 
 const adminReducer = (state,action) => {
     switch(action.type) {
-
-        case 'FETCH_USERS':
+        case 'FETCHING':
             return {
-                ...state,
+                ...initialState,
+                isLoading: true
+            };
+        case 'FETCH':
+            return {
+                ...initialState,
                 users: [...state.users,...action.payload]
+            };
+        case 'FETCH_ERROR':
+            return {
+                ...initialState,
+                hasError: true
             };
         default :
         return state;

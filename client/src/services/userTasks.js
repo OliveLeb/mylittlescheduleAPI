@@ -1,6 +1,6 @@
 import http from '../http.common';
 
-const getTasks = () => {
+const get = () => {
     return http.get('/task/mytasks');
 };
 
@@ -20,5 +20,5 @@ const deleteTasksDone = () => {
     return http.delete('/task/mytasks/completed');
 }
 
-const TaskService = {getTasks,createTask,deleteTask, updateTask, deleteTasksDone};
+const TaskService = {get,createTask,deleteTask, updateTask, deleteTasksDone};
 export default TaskService;

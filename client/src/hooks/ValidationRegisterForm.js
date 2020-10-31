@@ -27,7 +27,7 @@ const ValidationRegisterForm = ( newUser, handleErrors ) => {
         }
         if(!newUser.password.match('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,16}$')) {
             isError = true;
-            errors.passwordError = 'Le mot de passe doit comporter entre 6 et 16 caractères. (Au moins une lettre minuscule, une lettre majuscule et un chiffre)';
+            errors.passwordError = 'Mot de passe non valide.';
         }
         if(newUser.password !== newUser.repeat_password) {
             isError = true;

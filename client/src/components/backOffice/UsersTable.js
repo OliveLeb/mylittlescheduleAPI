@@ -1,11 +1,13 @@
 import React, { useContext } from 'react'
 import { Context as AdminContext} from '../../context/AdminContext'
+import LoadingSpinner from '../LoadingSpinner'
 
 const UsersTable = () => {
 
-    const { users } = useContext(AdminContext)
+    const { users, hasError, isLoading } = useContext(AdminContext)
 
     return (
+        <>
         <table className='table table-striped table-bordered'>
             <thead>
                 <tr>
@@ -18,6 +20,7 @@ const UsersTable = () => {
                 </tr>
             </thead>
             <tbody>
+                {hasError && <tr><td colSpan='6'>Oups, Something went wrong !</td></tr>}
                 {
                     users.map(user => (
                         <tr key={user.id}>
@@ -35,6 +38,9 @@ const UsersTable = () => {
                 }
             </tbody>
         </table>
+        {isLoading && <LoadingSpinner />}
+
+        </>
     )
 }
 

@@ -1,7 +1,7 @@
-const fetchUsers = (dispatch) => {
+const fetch = (dispatch) => {
     return (res) => {
         dispatch({
-            type:'FETCH_USERS',
+            type:'FETCH',
             payload: res.data.map(user => {
                 return {
                     id: user.id,
@@ -14,6 +14,20 @@ const fetchUsers = (dispatch) => {
         });
     };
 };
+const loading = (dispatch) => {
+    return () => {
+        dispatch({
+            type: 'FETCHING'
+        })
+    }
+}
 
-const actions = { fetchUsers };
+const fetchError = (dispatch) => {
+    return () => {
+        dispatch({
+            type: 'FETCH_ERROR'
+        })
+    }
+}
+const actions = { fetch, loading, fetchError };
 export default actions;

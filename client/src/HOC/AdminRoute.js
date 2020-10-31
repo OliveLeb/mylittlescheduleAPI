@@ -1,23 +1,23 @@
 import { useContext } from 'react'
 import { Redirect, Route} from 'react-router-dom';
-import { Context } from '../context/AuthContext'
-import FetchUsers from '../hooks/FetchUsers';
+import { Context as AuthContext} from '../context/AuthContext';
 
+const AdminRoute = ({children,rest}) => {
 
-
-const AdminRoute = ({children, ...rest}) => {
-
-    FetchUsers();
-
-    const { loggedUser, isLogged } = useContext(Context);
+    const { loggedUser, isLogged } = useContext(AuthContext);
 
     return (
-        <Route {...rest} render={({ location }) => 
+     
+        <Route {...rest} render={({location}) => 
         isLogged && loggedUser.is_admin 
         ? children
-        : <Redirect to='/' />
+        : <Redirect to={{
+            pathname: '/',
+            state: { from :location}
+        }} />
             }
         />
+
     )
     
 

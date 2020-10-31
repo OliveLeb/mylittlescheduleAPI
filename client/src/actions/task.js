@@ -1,7 +1,7 @@
-const fetchTasks = (dispatch) => {
+const fetch = (dispatch) => {
     return (res) => {
         dispatch({
-            type:'FETCH_TASKS_SUCCESS',
+            type:'FETCH_TASKS',
             payload: res.data.map((item) => {
                 return {
                     id: item.id,
@@ -16,6 +16,22 @@ const fetchTasks = (dispatch) => {
         });
     };
 };
+
+const loading = (dispatch) => {
+    return () => {
+        dispatch({
+            type: 'FETCHING'
+        })
+    }
+}
+
+const fetchError = (dispatch) => {
+    return () => {
+        dispatch({
+            type: 'FETCH_ERROR'
+        })
+    }
+}
 
 const reset = (dispatch) => {
     return () => {
@@ -85,5 +101,5 @@ const toggleCompletedVisible = (dispatch) => {
     };
 };
 
-const actions = {fetchTasks,reset,handleTaskInput,addTaskSuccess,deleteTask, changeIsDone, toggleCompletedVisible};
+const actions = {fetch,loading,fetchError,reset,handleTaskInput,addTaskSuccess,deleteTask, changeIsDone, toggleCompletedVisible};
 export default actions;

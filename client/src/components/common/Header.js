@@ -1,16 +1,17 @@
 import React, { useContext, useEffect } from 'react';
 import { Context as AuthContext} from '../../context/AuthContext';
 import { Context as TaskContext } from '../../context/TaskContext';
-import FetchTasks from '../../hooks/FetchTasks';
+import { useFetch } from '../../hooks/useFetch';
 import DataService from '../../services/auth';
+import TaskService from '../../services/userTasks';
 import NavBar from './NavBar/NavBar';
 
 const Header = () => {
 
     const {isLogged, disconnect, connect, loggedUser} = useContext(AuthContext);
-    const {reset} = useContext(TaskContext);
+    const {reset,fetch,loading,fetchError} = useContext(TaskContext);
 
-    FetchTasks(isLogged);
+    useFetch(TaskService,fetch,loading,fetchError, isLogged);
 
     const token = localStorage.getItem('x-access-token');
     useEffect(()=>{

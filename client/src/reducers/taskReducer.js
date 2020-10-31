@@ -6,6 +6,7 @@ export const initialState = {
         hour:null
     },
     tasks: [],
+    isLoading:false,
     hasError: false,
     isAdded: false,
     isCompletedVisible: true
@@ -15,20 +16,21 @@ const taskReducer = (state,action) => {
     switch(action.type) {
         case 'RESET_TASKS':
             return {
-                ...state,
-                tasks: [],
-                isAdded: false
+                ...initialState
             };
-        case 'FETCH_TASKS_SUCCESS':
+        case 'FETCHING':
             return {
-                ...state,
-                tasks: [...action.payload],
-                hasError: false,
-                isAdded:false
+                ...initialState,
+                isLoading:true
+            }
+        case 'FETCH_TASKS':
+            return {
+                ...initialState,
+                tasks: [...action.payload]
             };
-        case 'HAS_ERROR':
+        case 'FETCH_ERROR':
             return {
-                ...state,
+                ...initialState,
                 hasError: true
             };
         case 'INPUT_TASK':

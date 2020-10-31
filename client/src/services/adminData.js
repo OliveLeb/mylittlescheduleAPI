@@ -1,8 +1,8 @@
 import http from '../http.common';
 
-const getUsers = () => {
+const get = () => {
     return http.get('/users');
 };
 
-const AdminService = { getUsers };
+const AdminService = { get };
 export default AdminService;
