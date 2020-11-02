@@ -19,11 +19,12 @@ const Login = () => {
         resetError();
         DataService.login(user)
             .then(res => {
-                if(res.data.token){
-                    localStorage.setItem('x-access-token', res.data.token);
+                console.log(res)
+             //   if(res.data.token){
+               //     localStorage.setItem('x-access-token', res.data.token);
                     connect(res.data.user);
                     history.replace(from);
-                };
+              //  };
             })
             .catch(err => {
                 if(err.request){

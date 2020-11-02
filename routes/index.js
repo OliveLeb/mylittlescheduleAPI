@@ -1,13 +1,11 @@
 'use strict';
 
-const users = require('./users');
-const register = require('./register');
-const login = require('./login');
-const tasks = require('./tasks');
+const userRoute = require('./users');
+const taskRoute = require('./tasks');
+const authRoute = require('./auth');
 
 module.exports = app => {
-    app.use('/api/users', users),
-    app.use('/api/task',tasks),
-    app.use('/api/register', register),
-    app.use('/api/login', login)
+    app.use('/api/users', userRoute),
+    app.use('/api/task',taskRoute),
+    app.use('/api', authRoute)
 };
