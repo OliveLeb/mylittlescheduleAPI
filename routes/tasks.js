@@ -1,6 +1,5 @@
 'use strict';
 
-const moment = require('moment');
 const db = require('../db');
 const validateTask = require('../schema/tasks');
 const verify = require('../middleware/authorization');

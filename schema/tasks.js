@@ -14,21 +14,8 @@ const validateTask = async (req,res,next) => {
     });
 
     try {
-        const verifJoi = await schema.validateAsync(body);
-
-        const str = verifJoi.day;
-
-        if(str !== null) {
-        // putting date in the right format
-        const truc = JSON.stringify(str);
-        const date = truc.slice(1,11);
-
-        verifJoi.day = date;
-        }
-        
-        
-        req.task = verifJoi;
-        
+        const verifJoi = await schema.validateAsync(body);        
+        req.task = verifJoi;    
         return next();
     }
     catch(error) {
