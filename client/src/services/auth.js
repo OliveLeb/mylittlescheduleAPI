@@ -9,9 +9,17 @@ const register = (data) => {
     return http.post('/register',data);
 };
 
+const refreshToken = () => {
+    return http.post('/refresh-token');
+};
+
+const logout = () => {
+    return http.delete('/logout');
+}
+
 const getUserData = () => {
     return http.get('/users/loggedUser');
 };
 
-const DataService = {login,getUserData, register};
+const DataService = {login,getUserData, register, refreshToken,logout};
 export default DataService;

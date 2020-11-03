@@ -4,10 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Provider as AuthProvider } from './context/AuthContext';
+import { Provider as TaskProvider } from './context/TaskContext';
 
 ReactDOM.render(
   <React.StrictMode>
+  <AuthProvider>
+  <TaskProvider>
     <App />
+  </TaskProvider>
+  </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

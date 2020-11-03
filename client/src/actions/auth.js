@@ -1,8 +1,11 @@
 const connect = (dispatch) => {
-    return (data) =>{
+    return (data,token,expires) =>{
         dispatch({
             type: 'LOGIN_SUCCESS',
-            payload: {...data}
+            payload: {
+                loggedUser:{...data},
+                token: {value:token,expiresIn:expires},                
+            }
         });
     }
 };

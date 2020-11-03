@@ -15,6 +15,7 @@ module.exports = {
         }
         catch(err) {
             console.log(err.message);
+            res.status(400).send(err.message);
         };
 
     },

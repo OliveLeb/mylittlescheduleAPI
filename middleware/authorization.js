@@ -7,8 +7,7 @@ module.exports = {
     
     token: async (req,res,next) => {
 
-        //const token = req.cookies.token || '';
-        const token = req.header('x-auth-token');
+        const token = req.header('x-access-token');
 
         try {
             if (!token) return res.status(401).send('Accès refusé, connectez-vous.');
@@ -17,7 +16,7 @@ module.exports = {
             next();
         }
         catch(err) {
-            res.status(500).send('Invalid token.').json(err.toString());
+            res.status(500).send('Invalid token.');
         }
         
     },
@@ -28,14 +27,8 @@ module.exports = {
 
         try {
             if (!refreshToken) return res.status(401).send('Accès refusé, connectez-vous.');
-            const verified = jwt.verify(refreshToken,process.env.REFRESH_TOKEN);
-            console.log(verified);
-          /*  if(verified) {
-                const {rows} = await db.query('SELECT token fROM refresh_token WHERE ip=$1 AND token=$2',[ip,refreshToken]);
-                req.refreshToken = verified;
-                next();$
-            }
-            */
+            jwt.verify(refreshToken,process.env.REFRESH_TOKEN);
+            req.cookie = refreshToken;
             next();
         }
         catch(err) {

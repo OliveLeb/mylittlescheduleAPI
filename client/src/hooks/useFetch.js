@@ -5,7 +5,6 @@ export const useFetch = (axiosService, fetch, loading, fetchError, isLogged, dat
     useEffect(() => {
         let cancelRequest = false;
         if(!axiosService) return ;
-
         const fetchData = async () => {
             
             loading();

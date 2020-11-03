@@ -1,19 +1,16 @@
 import React, { useContext, useEffect } from 'react';
 import { Context as AuthContext} from '../../context/AuthContext';
 import { Context as TaskContext } from '../../context/TaskContext';
-import { useFetch } from '../../hooks/useFetch';
 import DataService from '../../services/auth';
-import TaskService from '../../services/userTasks';
 import NavBar from './NavBar/NavBar';
 
 const Header = () => {
 
     const {isLogged, disconnect, connect, loggedUser} = useContext(AuthContext);
-    const {tasks,reset,fetch,loading,fetchError} = useContext(TaskContext);
+    const {reset} = useContext(TaskContext);
 
-    useFetch(TaskService,fetch,loading,fetchError,isLogged,tasks);
 
-    const token = localStorage.getItem('x-access-token');
+  /*  const token = localStorage.getItem('x-access-token');
     useEffect(()=>{
         if(token) {
             DataService.getUserData()
@@ -24,11 +21,17 @@ const Header = () => {
                 console.log(err.response);
             });
         };
-    },[token]);
+    },[token]);*/
 
     const logOut = (e) => {
-        disconnect(e);
-        reset();
+        DataService.logout()
+        .then(()=>{
+            disconnect(e);
+            reset();
+        }).catch(err=>{
+            console.log(err);
+        });
+        
     }
 
 

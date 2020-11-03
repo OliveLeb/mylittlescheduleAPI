@@ -40,9 +40,8 @@ module.exports = {
             const ip = await getUserIp();
             const refreshToken = await createRefreshToken(res,user,ip);
             const accessToken = await createAccessToken(res,user);
-            console.log(accessToken)
-            res.status(200).header('token', accessToken)
-            .cookie('refresh', refreshToken, {expires: new Date(Date.now() + 8*7*24*60*60*1000), secure:false, httpOnly:true})
+            res.status(200).header('x-access-token', accessToken)
+            .cookie('refresh', refreshToken, {expires: new Date(Date.now() + 8*7*24*60*60*1000), secure:false, httpOnly:true, sameSite:true})
             .send({
                 message: 'Token created, logged in',
                 user:{
@@ -77,7 +76,8 @@ module.exports = {
     refreshToken: async (req,res) => {
 
         try {
-            const refreshToken = req.cookies.refresh;
+            //const refreshToken = req.cookies.refresh;
+            const refreshToken = req.cookie;
             if(!refreshToken) return res.status(403).json({error:'Accès refusé, token manquant.'});
 
             const user = req.body.user;
@@ -87,7 +87,7 @@ module.exports = {
             if(!rows) return res.status(401).json({ error: 'Token expired!' });
 
             const accessToken = await createAccessToken(res,user);
-            return res.status(200).header('token', accessToken).send({
+            return res.status(200).header('x-access-token', accessToken).send({
                 message: 'Token created, logged in',
                 user:{
                     firstname:user.firstname,
@@ -97,7 +97,6 @@ module.exports = {
                     is_admin: user.is_admin
                 },
             });
-            //res.send(rows);
         }
         catch(error) {
             console.error(error);
@@ -110,6 +109,7 @@ module.exports = {
         try {
             const refreshToken = req.cookies.refresh;
             await db.query('DELETE FROM refresh_token WHERE token =$1',[refreshToken]);
+            res.clearCookie('refresh').send('Logged out successfully.');
         }
         catch(err) {
             console.log(err);

@@ -32,7 +32,11 @@ export const initialState = {
         email:false,
         password:false
     },
-    errorMessage :''
+    errorMessage :'',
+    token:{
+        value: '',
+        expiresIn: ''
+    }
 }
 
 const authReducer = (state, action) => {
@@ -45,7 +49,8 @@ const authReducer = (state, action) => {
         case 'LOGIN_SUCCESS':
             return {
                 ...state,
-                loggedUser:{...state.loggedUser,...action.payload},
+                loggedUser:{...state.loggedUser,...action.payload.loggedUser},
+                token: {...action.payload.token},
                 user:{email :'',password: ''},
                 isLogged: true
             };
