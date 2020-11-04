@@ -25,7 +25,7 @@ module.exports = {
         const refreshToken = req.cookies.refresh;
 
         try {
-            if (!refreshToken) return res.status(401).send('Accès refusé, connectez-vous.');
+            if (!refreshToken) return ;//res.status(401).send('Accès refusé, connectez-vous.');
             const verified = jwt.verify(refreshToken,process.env.REFRESH_TOKEN);
             req.cookie = refreshToken;
             req.userId = verified.id;
