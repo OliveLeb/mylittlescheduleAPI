@@ -52,20 +52,9 @@ module.exports = {
                     is_admin: user.is_admin
                 },
                 token: {
-                    expiresIn : 60*60*1000
+                    expiresIn : 60*1000
                 }
             });
-            /*res.status(200).header('auth-token', token).cookie('auth',token,{expires: new Date(60000 + Date.now()),secure:false,httpOnly:true}).send({
-                message: 'Token created, logged in',
-                user:{
-                    firstname:user.firstname,
-                    lastname:user.lastname,
-                    email: user.email,
-                    picture: user.picture,
-                    is_admin: user.is_admin
-                },
-                token: token
-            });*/
         }
         catch(err){
             return res.status(500).json(err.toString());
@@ -76,17 +65,18 @@ module.exports = {
     refreshToken: async (req,res) => {
 
         try {
-            //const refreshToken = req.cookies.refresh;
             const refreshToken = req.cookie;
+            const id = req.userId;
+            const date = moment().format('YYYY-MM-D H:mm:ss.SSS');
             if(!refreshToken) return res.status(403).json({error:'Accès refusé, token manquant.'});
 
-            const user = req.body.user;
-
-            const {rows} = await db.query('SELECT token fROM refresh_token WHERE token=$1 AND expires > $2',[refreshToken,Date.now()]);
+            const user = await db.query('SELECT id,firstname,lastname,email,picture,is_admin FROM users WHERE id=$1',[id]);
+            
+            const {rows} = await db.query('SELECT token fROM refresh_token WHERE token=$1 AND expires > $2',[refreshToken,date]);
 
             if(!rows) return res.status(401).json({ error: 'Token expired!' });
 
-            const accessToken = await createAccessToken(res,user);
+            const accessToken = await createAccessToken(res,user.rows[0]);
             return res.status(200).header('x-access-token', accessToken).send({
                 message: 'Token created, logged in',
                 user:{
@@ -96,6 +86,9 @@ module.exports = {
                     picture: user.picture,
                     is_admin: user.is_admin
                 },
+                token: {
+                    expiresIn : 60*1000
+                }
             });
         }
         catch(error) {

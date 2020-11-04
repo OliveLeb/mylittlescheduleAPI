@@ -21,11 +21,12 @@ import AdminPanel from './components/AdminPanel';
 import LoggedRoute from './HOC/LoggedRoute';
 import AdminRoute from './HOC/AdminRoute';
 import { useFetch } from './hooks/useFetch';
+import { useRefreshToken } from './hooks/useRefreshToken';
 
 
 function App() {
 
-  const {isLogged,token} = useContext(AuthContext);
+  const {isLogged,token,connect} = useContext(AuthContext);
   const {tasks,fetch,loading,fetchError} = useContext (TaskContext);
 
   http.interceptors.request.use((config)=>{
@@ -37,8 +38,7 @@ function App() {
   );
 
   useFetch(TaskService,fetch,loading,fetchError,isLogged,tasks);
-
-
+  useRefreshToken(token,connect,isLogged);
 
   return (
         <Router>

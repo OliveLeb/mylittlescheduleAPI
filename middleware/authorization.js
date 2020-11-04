@@ -1,7 +1,6 @@
 'use strict';
 
 const jwt = require('jsonwebtoken');
-const db = require('../db');
 
 module.exports = {
     
@@ -27,8 +26,9 @@ module.exports = {
 
         try {
             if (!refreshToken) return res.status(401).send('Accès refusé, connectez-vous.');
-            jwt.verify(refreshToken,process.env.REFRESH_TOKEN);
+            const verified = jwt.verify(refreshToken,process.env.REFRESH_TOKEN);
             req.cookie = refreshToken;
+            req.userId = verified.id;
             next();
         }
         catch(err) {
@@ -44,8 +44,4 @@ module.exports = {
         return res.status(401).send('Vous n\'êtes pas autorisé à circuler ici !');
     }
 
-}
-
-
-
-//module.exports = {verifyToken:verifyToken,verifyScope:verifyScope};
+};
